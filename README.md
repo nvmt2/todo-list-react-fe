@@ -16,9 +16,11 @@
 | code sign in, sign up features  |  4h |
 | code update account features | 4h |
 | code CRUD todo list feature | 8h |
+| code toast feature | 4h |
+| code side effect ( loading, validation )| 6h |
 | testing & fixbug | 16h | 
 | release | 2h |
-| total | 58h |
+| total | 68h |
 
 **note** The above time table only counts the working time, not include break times, and personal work times
 
