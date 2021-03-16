@@ -19,6 +19,7 @@
 | testing & fixbug | 16h | 
 | release | 2h |
 | total | 58h |
+
 **note** The above time table only counts the working time, not include break times, and personal work times
 
 
