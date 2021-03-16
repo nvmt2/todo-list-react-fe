@@ -1,12 +1,12 @@
 # enjoywork-todo-list-fe
 
-## technologies
+## Technologies
  - server emulator: json-server
  - HTTP Client: axios
  - UI library: Material-UI, styled components
  - Library for coding FE: React, react-redux, react-router-dom
 
-## estimate project 
+## Estimate project 
 | Title         | Timeline      |
 | ------------- |:-------------:| 
 |  analysic project     | 4h | 
