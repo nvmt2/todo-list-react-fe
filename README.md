@@ -22,4 +22,7 @@
 
 **note** The above time table only counts the working time, not include break times, and personal work times
 
+## Guide
+- Clone by ssh key: git@gitlab.com:MinhToi/enjoywork-todo-list-fe.git
+
 
