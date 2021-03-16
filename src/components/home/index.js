@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 function Home(props) {
   const test = useSelector((state) => state);
@@ -7,6 +8,7 @@ function Home(props) {
   return (
     <div>
       <h3>Home page</h3>
+      <NavLink to="/signIn">sign in</NavLink>
     </div>
   );
 }

@@ -1,18 +1,21 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-//internal
+// internal modules
 import { routes } from 'router/routes';
 
-//component
+// component
 import LayoutBody from 'components/layout';
+import PrivateRoute from 'router/PrivateRoute';
+import Login from 'components/login';
 
 function WrapRouter() {
   return (
     <LayoutBody>
       <Router>
         <Switch>
+          <Route path="/signIn" component={Login} />
           {routes.map((item, index) => (
-            <Route key={index} {...item} />
+            <PrivateRoute key={index} {...item} />
           ))}
         </Switch>
       </Router>

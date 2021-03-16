@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import storeProduct from 'redux/product/reducer';
+import todoList from 'redux/todo-list/reducer';
+import user from 'redux/user/reducer';
 
 const rootReducer = combineReducers({
-  //testing
-  storeProduct,
+  todoList,
+  user,
 });
 
 export default rootReducer;
