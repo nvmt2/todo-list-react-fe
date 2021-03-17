@@ -1,14 +1,14 @@
 import React from 'react';
 
 //internal
-import Header from 'components/layout/header';
-import Footer from 'components/layout/footer';
+import Header from 'layout/header';
+import Footer from 'layout/footer';
 
 function LayoutBody(props) {
   return (
     <div>
       <Header />
-      <div>{props.children}</div>
+      <div style={{ height: '80vh' }}>{props.children}</div>
       <Footer />
     </div>
   );

@@ -9,6 +9,8 @@ function Home(props) {
     <div>
       <h3>Home page</h3>
       <NavLink to="/signIn">sign in</NavLink>
+      <br />
+      <NavLink to="/userProfile">UserProfile</NavLink>
     </div>
   );
 }
