@@ -6,7 +6,7 @@ import { routes } from 'router/routes';
 // component
 import LayoutBody from 'components/layout';
 import PrivateRoute from 'router/PrivateRoute';
-import Login from 'components/login';
+import Login from 'module/page/login';
 
 function WrapRouter() {
   return (

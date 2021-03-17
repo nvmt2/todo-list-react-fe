@@ -1,5 +1,5 @@
-import Home from 'components/home';
-import NotFound from 'components/error/NotFound';
+import Home from 'module/page/home';
+import NotFound from 'module/page/error/NotFound';
 
 export const routes = [
   {
