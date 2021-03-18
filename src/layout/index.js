@@ -8,7 +8,7 @@ function LayoutBody(props) {
   return (
     <div>
       <Header />
-      <div style={{ height: '80vh' }}>{props.children}</div>
+      <main style={{ minHeight: '90vh' }}>{props.children}</main>
       <Footer />
     </div>
   );

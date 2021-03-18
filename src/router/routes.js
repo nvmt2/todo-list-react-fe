@@ -18,13 +18,13 @@ export const publicRoutes = [
 
 export const privateRoutes = [
   {
+    path: '/userProfile',
+    component: UserProfile,
+  },
+  {
     path: '/',
     component: Home,
     exact: true,
-  },
-  {
-    path: '/userProfile',
-    component: UserProfile,
   },
   {
     path: '*',

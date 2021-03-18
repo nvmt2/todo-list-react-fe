@@ -11,7 +11,6 @@ function PrivateRoute(props) {
   return (
     <Route
       {...rest}
-      path
       exact
       render={(props) =>
         isAuthenticated ? (
