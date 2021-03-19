@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 // internal modules
 import { actionSignIn } from 'redux/user/action';
 import logo from 'assets/images/logo1.png';
 import { signInStyle } from 'module/page/sign-in/style';
+import { getUser, signIn, signOut, updateUser } from 'service/userApi';
 // material-UI component
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -23,11 +25,36 @@ function SignIn() {
   let location = useLocation();
   let history = useHistory();
   let { isAuthenticated } = useSelector((state) => state.user);
-  let signIn = () => {
-    dispatch(actionSignIn());
-    history.push(location.state);
+  let handleSignIn = () => {
+    // dispatch(actionSignIn());
+    // location.state ? history.push(location.state) : history.push('/')
+    let body = {
+      email: 'minhtoi@gmail.com',
+      password: '12345678',
+    };
+    signIn(body)
+      .then((res) => console.log('Sign-in: ', res))
+      .catch((err) => console.log('Error Sign-in', err));
   };
+  const handleSignOut = () => {
+    let token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDU0NTJhMjFhNGY5ZDAwMTdlMzVkNmMiLCJpYXQiOjE2MTYxNDMyODl9.H3ua2SSOOgHt-HbrnCEw9-fXJ1uzJOH6uj-4UBpqlws';
 
+    signOut(token)
+      .then((res) => console.log('SignOut: ', res))
+      .catch((err) => console.log('Error SignOut', err));
+  };
+  const handleUpdateUser = () => {
+    let token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDU0NTJhMjFhNGY5ZDAwMTdlMzVkNmMiLCJpYXQiOjE2MTYxNDI4ODh9.YyghWw9EUXUioFVN8KjcYB0OxgdFPOowj5kSbPdXHBc';
+    let payload = {
+      name: 'minhtoi',
+    };
+
+    updateUser(payload, token)
+      .then((res) => console.log('UPDATE: ', res))
+      .catch((err) => console.log('ERR UPDATE', err));
+  };
   // LIFECYCLE
   useEffect(() => {
     isAuthenticated && history.goBack();
@@ -36,7 +63,7 @@ function SignIn() {
   console.log('SignIn', location);
   return (
     <div>
-      <Container maxWidth="sm">
+      <Box className={classes.root} maxWidth="sm">
         <Box className={classes.title}>
           <img src={logo} alt="hi" height="50px" width="200px" />
         </Box>
@@ -45,7 +72,7 @@ function SignIn() {
           variant="subtitle1"
           gutterBottom
         >
-          Sign in / Create an account
+          Sign in with your account
         </Typography>
         <Typography
           className={classes.subTitle2}
@@ -73,16 +100,22 @@ function SignIn() {
           className={classes.submitButton}
           variant="contained"
           color="primary"
-          onClick={signIn}
+          onClick={handleSignIn}
         >
           Submit
+        </Button>
+        <Button variant="contained" onClick={handleSignOut}>
+          Logout
+        </Button>
+        <Button variant="contained" onClick={handleUpdateUser}>
+          Update
         </Button>
         <Typography
           className={classes.subTitle2}
           variant="subtitle1"
           gutterBottom
         >
-          Or, connect with
+          <NavLink to="/signUp">Create new account</NavLink>, or connect with
         </Typography>
         <Button
           className={classes.gitHubButton}
@@ -107,7 +140,7 @@ function SignIn() {
         >
           Facebook
         </Button>
-      </Container>
+      </Box>
     </div>
   );
 }

@@ -14,13 +14,8 @@ const bodyContentStyle = makeStyles((them) => ({
     margin: 0,
   },
   sidebar: {
-    minHeight: '90vh',
-    padding: '20px 20px',
+    minHeight: '100vh',
     background: '#f5f7fa',
-    boxSizing: 'border-box',
-  },
-  content: {
-    padding: '20px 0px',
   },
 }));
 function BodyContent(props) {
@@ -30,7 +25,7 @@ function BodyContent(props) {
       <Box className={classes.sidebar}>
         <LeftSidebar />
       </Box>
-      <Box className={classes.content}>{props.children}</Box>
+      <Box>{props.children}</Box>
     </Box>
   );
 }
