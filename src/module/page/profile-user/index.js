@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 // internal modules
 import BodyContent from 'layout/body-content';
 import avatar from 'assets/images/profile-user/ava.png';
-// import { userProfileStyle } from 'module/page/profile-user/style';
+import { userProfileStyle } from 'module/page/profile-user/style';
+import { actionUpdateUser } from 'redux/user/action';
 // material-UI components
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -10,54 +13,38 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 // material-UI icon
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import { makeStyles } from '@material-ui/core/styles';
 
-const userProfileStyle = makeStyles((them) => ({
-  root: {
-    width: '50%',
-    margin: '10px auto',
-    padding: '10px 20px',
-    border: '1px solid gray',
-    borderRadius: '5px',
-    '& h3': {
-      fontSize: '18px',
-      fontWeight: 'bold',
-      margin: '20px 0',
-    },
-    '& h6': {
-      color: 'rgb(97, 97, 97)',
-      fontSize: '14px',
-    },
-    '& .MuiFormControl-root': {
-      display: 'block',
-      margin: '15px 10px',
-    },
-    '& .MuiInputBase-root': {
-      width: '80%',
-    },
-  },
-  colorTitle: {
-    color: '#3f51b5',
-  },
-  buttonSave: {
-    margin: '10px',
-  },
-  wrapperUploadForm: {
-    padding: '0 10px',
-    margin: '20px 0',
-    display: 'flex',
-    alignItems: 'flex-end',
-  },
-  wrapperButtonUpload: {
-    maxWidth: '200px',
-    marginLeft: '20px',
-    '& > button': {
-      margin: '5px 0',
-    },
-  },
-}));
 function UserProfile() {
+  //STATE
   const classes = userProfileStyle();
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const informationUser = useSelector((state) => state.user.data);
+  const { token } = useSelector((state) => state.user);
+  let inputNameRef = useRef();
+  let inputEmailRef = useRef();
+  let inputPasswordRef = useRef();
+  let inputPasswordConfirmRef = useRef();
+
+  //METHOD
+  const handleGoBack = () => {
+    history.push('/');
+  };
+  const handleSave = () => {
+    let password = inputPasswordRef.current.value;
+    let confirmPassword = inputPasswordConfirmRef.current.value;
+    if (password === confirmPassword) {
+      let informationUser = {
+        name: inputNameRef.current.value,
+        email: inputEmailRef.current.value,
+        password,
+      };
+      dispatch(actionUpdateUser(informationUser, token));
+    } else {
+      alert('Password is not the same, type again!');
+    }
+  };
+  console.log('UserProfile');
   return (
     <BodyContent>
       <Box className={classes.root}>
@@ -86,37 +73,46 @@ function UserProfile() {
           <TextField
             variant="outlined"
             label="Full name"
-            defaultValue="Minh Toi"
+            defaultValue={informationUser.name}
+            inputRef={inputNameRef}
           />
           <TextField
             variant="outlined"
             label="Email"
-            defaultValue="minh@gmail.com"
+            defaultValue={informationUser.email}
+            inputRef={inputEmailRef}
           />
         </form>
         <Typography variant="h3">CHANGE PASSWORD</Typography>
         <form>
-          <TextField
-            label="Current Password"
+          {/* <TextField
             type="password"
+            label="Current Password"
             autoComplete="current-password"
             variant="outlined"
-          />
-          <TextField label="New Password" type="password" variant="outlined" />
+          /> */}
           <TextField
-            label="Confirm Password"
             type="password"
+            label="New Password"
             variant="outlined"
+            inputRef={inputPasswordRef}
+          />
+          <TextField
+            type="password"
+            label="Confirm Password"
+            variant="outlined"
+            inputRef={inputPasswordConfirmRef}
           />
         </form>
         <Button
           className={classes.buttonSave}
           variant="outlined"
           color="primary"
+          onClick={handleSave}
         >
           Save
         </Button>
-        <Button variant="outlined" color="default">
+        <Button variant="outlined" color="default" onClick={handleGoBack}>
           Back
         </Button>
       </Box>

@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 // internal modules
-import { actionSignIn } from 'redux/user/action';
+import { actionSignIn, actionClearUserType } from 'redux/user/action';
 import logo from 'assets/images/logo1.png';
 import { signInStyle } from 'module/page/sign-in/style';
-import { getUser, signIn, signOut, updateUser } from 'service/userApi';
 // material-UI component
-import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -25,42 +23,54 @@ function SignIn() {
   let location = useLocation();
   let history = useHistory();
   let { isAuthenticated } = useSelector((state) => state.user);
+  let inputEmailRef = useRef();
+  let inputPasswordRef = useRef();
+
+  //METHOD
   let handleSignIn = () => {
-    // dispatch(actionSignIn());
-    // location.state ? history.push(location.state) : history.push('/')
-    let body = {
-      email: 'minhtoi@gmail.com',
-      password: '12345678',
+    //sample account
+    //minhtoi@gmail.com     1 -> 2
+    //12345678
+    //tamtran@gmail.com     1-> 3
+    //12345678
+    let account = {
+      email: inputEmailRef.current.value,
+      password: inputPasswordRef.current.value,
     };
-    signIn(body)
-      .then((res) => console.log('Sign-in: ', res))
-      .catch((err) => console.log('Error Sign-in', err));
+    dispatch(actionSignIn(account));
   };
-  const handleSignOut = () => {
-    let token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDU0NTJhMjFhNGY5ZDAwMTdlMzVkNmMiLCJpYXQiOjE2MTYxNDMyODl9.H3ua2SSOOgHt-HbrnCEw9-fXJ1uzJOH6uj-4UBpqlws';
+  // const handleSignOut = () => {
+  //   let token =
+  //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDU0NTJhMjFhNGY5ZDAwMTdlMzVkNmMiLCJpYXQiOjE2MTYxNDMyODl9.H3ua2SSOOgHt-HbrnCEw9-fXJ1uzJOH6uj-4UBpqlws';
 
-    signOut(token)
-      .then((res) => console.log('SignOut: ', res))
-      .catch((err) => console.log('Error SignOut', err));
-  };
-  const handleUpdateUser = () => {
-    let token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDU0NTJhMjFhNGY5ZDAwMTdlMzVkNmMiLCJpYXQiOjE2MTYxNDI4ODh9.YyghWw9EUXUioFVN8KjcYB0OxgdFPOowj5kSbPdXHBc';
-    let payload = {
-      name: 'minhtoi',
-    };
+  //   signOut(token)
+  //     .then((res) => console.log('SignOut: ', res))
+  //     .catch((err) => console.log('Error SignOut', err));
+  // };
+  // const handleUpdateUser = () => {
+  //   let token =
+  //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDU0NTJhMjFhNGY5ZDAwMTdlMzVkNmMiLCJpYXQiOjE2MTYxNDI4ODh9.YyghWw9EUXUioFVN8KjcYB0OxgdFPOowj5kSbPdXHBc';
+  //   let payload = {
+  //     name: 'minhtoi',
+  //   };
 
-    updateUser(payload, token)
-      .then((res) => console.log('UPDATE: ', res))
-      .catch((err) => console.log('ERR UPDATE', err));
-  };
+  //   updateUser(payload, token)
+  //     .then((res) => console.log('UPDATE: ', res))
+  //     .catch((err) => console.log('ERR UPDATE', err));
+  // };
+
   // LIFECYCLE
   useEffect(() => {
-    isAuthenticated && history.goBack();
+    // isAuthenticated && history.goBack();
+    isAuthenticated
+      ? location.state
+        ? history.push(location.state)
+        : history.push('/')
+      : dispatch(actionClearUserType());
+    return dispatch(actionClearUserType());
   }, [isAuthenticated]);
 
-  console.log('SignIn', location);
+  console.log('SignIn');
   return (
     <div>
       <Box className={classes.root} maxWidth="sm">
@@ -86,13 +96,17 @@ function SignIn() {
             <TextField
               id="outlined-basic"
               label="Enter your email address"
+              type="email"
               variant="outlined"
+              inputRef={inputEmailRef}
             />
             <br />
             <TextField
               id="outlined-basic"
               label="Your password"
+              type="password"
               variant="outlined"
+              inputRef={inputPasswordRef}
             />
           </Box>
         </form>
@@ -103,12 +117,6 @@ function SignIn() {
           onClick={handleSignIn}
         >
           Submit
-        </Button>
-        <Button variant="contained" onClick={handleSignOut}>
-          Logout
-        </Button>
-        <Button variant="contained" onClick={handleUpdateUser}>
-          Update
         </Button>
         <Typography
           className={classes.subTitle2}

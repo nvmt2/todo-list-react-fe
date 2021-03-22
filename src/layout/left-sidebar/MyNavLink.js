@@ -1,6 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+//internal modules
+import { actionSignOut } from 'redux/user/action';
 //material-ui component
 import Button from '@material-ui/core/Button';
 
@@ -12,13 +15,17 @@ const navLinkStyle = makeStyles((them) => ({
 }));
 
 function MyNavLink(props) {
+  // STATE
   const { icon, path, children, ...rest } = props;
   const classes = navLinkStyle();
-  let history = useHistory();
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.user);
 
   const handleClick = () => {
-    if (path === '/logout') console.log('Hello logout');
-    else {
+    if (path === '/logout') {
+      dispatch(actionSignOut(token));
+    } else {
       history.push(path);
     }
   };

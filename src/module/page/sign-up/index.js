@@ -1,28 +1,35 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 // internal modules
 import { signUpStyle } from 'module/page/sign-up/style';
 import logo from 'assets/images/logo1.png';
-import { signUp } from 'service/userApi';
+import { actionSignUp } from 'redux/user/action';
 // material-UI component
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 
-function SignUp(props) {
+function SignUp() {
+  //STATE
   const classes = signUpStyle();
+  const dispatch = useDispatch();
+  let inputNameRef = useRef();
+  let inputEmailRef = useRef();
+  let inputPasswordRef = useRef();
 
+  //METHOD
   const handleSignUp = () => {
     let body = {
-      name: 'Muhammad Nur Ali',
-      email: 'tamtran@gmail.com',
-      password: '12345678',
+      name: inputNameRef.current.value,
+      email: inputEmailRef.current.value,
+      password: inputPasswordRef.current.value,
     };
-    signUp(body)
-      .then((res) => console.log('SignUp: ', res))
-      .catch((err) => console.log('Error SignUp', err));
+    dispatch(actionSignUp(body));
   };
+
+  console.log('SignUp: ');
 
   return (
     <Box className={classes.root} maxWidth="sm">
@@ -46,22 +53,25 @@ function SignUp(props) {
       <form>
         <Box className={classes.signInForm}>
           <TextField
+            type="text"
+            id="outlined-basic"
+            label="Enter your name"
+            variant="outlined"
+            inputRef={inputNameRef}
+          />
+          <TextField
             type="email"
             id="outlined-basic"
-            label="Enter your email address"
+            label="Enter your email"
             variant="outlined"
+            inputRef={inputEmailRef}
           />
           <TextField
             type="password"
             id="outlined-basic"
-            label="Create new password"
+            label="Enter password"
             variant="outlined"
-          />
-          <TextField
-            type="password"
-            id="outlined-basic"
-            label="Confirm password"
-            variant="outlined"
+            inputRef={inputPasswordRef}
           />
         </Box>
       </form>
