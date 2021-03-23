@@ -13,13 +13,25 @@ export const getMessStatus = (type) => {
     //   return 'Successfully removing a task';
     // case typeTodoList.REMOVE_TASK_FAILED:
     //   return 'Failed removing a task';
+
     //type of action Authentication
     case typeUser.SIGN_IN_SUCCEEDED:
       return 'Successfully sign in';
     case typeUser.SIGN_IN_FAILED:
       return 'Failed sign in';
-    // case typeUser.LOG_OUT_SUCCEEDED:
-    //   return 'Successfully sign out';
+    case typeUser.SIGN_UP_SUCCEEDED:
+      return 'Successfully sign up';
+    case typeUser.SIGN_UP_FAILED:
+      return 'Failed sign up';
+    case typeUser.SIGN_OUT_SUCCEEDED:
+      return 'Successfully sign out';
+    case typeUser.SIGN_OUT_FAILED:
+      return 'Failed sign out';
+    //type of action account
+    case typeUser.UPDATE_USER_SUCCEEDED:
+      return 'Successfully updating';
+    case typeUser.UPDATE_USER_FAILED:
+      return 'Failed updating';
     default:
       return 'Nothing';
   }

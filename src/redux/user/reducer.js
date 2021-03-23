@@ -86,7 +86,7 @@ const storeUser = (state = initialState, action) => {
         data: null,
         request: false,
         isAuthenticated: false,
-        type: null,
+        type: typeUser.SIGN_OUT_SUCCEEDED,
         error: null,
       };
     case typeUser.SIGN_OUT_FAILED:

@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // internal modules
 import { signUpStyle } from 'module/page/sign-up/style';
 import logo from 'assets/images/logo1.png';
 import { actionSignUp } from 'redux/user/action';
+import { actionClearUserType } from 'redux/user/action';
 // material-UI component
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -15,6 +16,7 @@ function SignUp() {
   //STATE
   const classes = signUpStyle();
   const dispatch = useDispatch();
+  const typeToastUser = useSelector((state) => state.user.type);
   let inputNameRef = useRef();
   let inputEmailRef = useRef();
   let inputPasswordRef = useRef();
@@ -28,7 +30,10 @@ function SignUp() {
     };
     dispatch(actionSignUp(body));
   };
-
+  //LIFECYCLE
+  useEffect(() => {
+    typeToastUser && dispatch(actionClearUserType());
+  }, [typeToastUser]);
   console.log('SignUp: ');
 
   return (

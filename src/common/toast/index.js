@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 //toast modules
 import { ToastContainer, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,8 +8,8 @@ import { getKindOfToast } from 'common/toast/getKindOfToast';
 
 function MyToast() {
   // STATE
-  let typeUser = useSelector((state) => state.user.type);
-  let typeTodo = useSelector((state) => state.todoList.type);
+  const typeUser = useSelector((state) => state.user.type);
+  const typeTodo = useSelector((state) => state.todoList.type);
   let type = typeUser || typeTodo;
   let configPositionToast = {
     position: 'top-right',

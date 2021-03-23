@@ -18,7 +18,6 @@ function* signInSaga(payload) {
       });
     }
   } catch (error) {
-    console.log('SIGN_IN_SAGA2', error);
     yield put({
       type: typeUser.SIGN_IN_FAILED,
       error: error.message,

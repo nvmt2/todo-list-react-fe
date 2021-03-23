@@ -18,11 +18,12 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 
 function SignIn() {
   // STATE
-  let classes = signInStyle();
-  let dispatch = useDispatch();
-  let location = useLocation();
-  let history = useHistory();
-  let { isAuthenticated } = useSelector((state) => state.user);
+  const classes = signInStyle();
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const history = useHistory();
+  const { isAuthenticated } = useSelector((state) => state.user);
+  const typeToastUser = useSelector((state) => state.user.type);
   let inputEmailRef = useRef();
   let inputPasswordRef = useRef();
 
@@ -39,36 +40,16 @@ function SignIn() {
     };
     dispatch(actionSignIn(account));
   };
-  // const handleSignOut = () => {
-  //   let token =
-  //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDU0NTJhMjFhNGY5ZDAwMTdlMzVkNmMiLCJpYXQiOjE2MTYxNDMyODl9.H3ua2SSOOgHt-HbrnCEw9-fXJ1uzJOH6uj-4UBpqlws';
-
-  //   signOut(token)
-  //     .then((res) => console.log('SignOut: ', res))
-  //     .catch((err) => console.log('Error SignOut', err));
-  // };
-  // const handleUpdateUser = () => {
-  //   let token =
-  //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDU0NTJhMjFhNGY5ZDAwMTdlMzVkNmMiLCJpYXQiOjE2MTYxNDI4ODh9.YyghWw9EUXUioFVN8KjcYB0OxgdFPOowj5kSbPdXHBc';
-  //   let payload = {
-  //     name: 'minhtoi',
-  //   };
-
-  //   updateUser(payload, token)
-  //     .then((res) => console.log('UPDATE: ', res))
-  //     .catch((err) => console.log('ERR UPDATE', err));
-  // };
 
   // LIFECYCLE
   useEffect(() => {
     // isAuthenticated && history.goBack();
-    isAuthenticated
-      ? location.state
-        ? history.push(location.state)
-        : history.push('/')
-      : dispatch(actionClearUserType());
-    return dispatch(actionClearUserType());
+    isAuthenticated &&
+      (location.state ? history.push(location.state) : history.push('/'));
   }, [isAuthenticated]);
+  useEffect(() => {
+    typeToastUser && dispatch(actionClearUserType());
+  }, [typeToastUser]);
 
   console.log('SignIn');
   return (

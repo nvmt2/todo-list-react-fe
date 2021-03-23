@@ -7,7 +7,7 @@ export const getTask = (idTask, token) => {
       Authorization: token,
     },
   };
-  return axiosClient.get(endpoint, {}, myHeader);
+  return axiosClient.get(endpoint, myHeader);
 };
 export const getAllTasks = (token) => {
   let endpoint = '/task';
@@ -16,8 +16,9 @@ export const getAllTasks = (token) => {
       Authorization: token,
     },
   };
-  return axiosClient.get(endpoint, {}, myHeader);
+  return axiosClient.get(endpoint, myHeader);
 };
+
 export const updateTask = (idTask, payload, token) => {
   let endpoint = `/task/${idTask}`;
   let myHeader = {
@@ -27,6 +28,7 @@ export const updateTask = (idTask, payload, token) => {
   };
   return axiosClient.put(endpoint, payload, myHeader);
 };
+
 export const removeTask = (idTask, token) => {
   let endpoint = `/task/${idTask}`;
   let myHeader = {
