@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 // internal modules
 import BodyContent from 'layout/body-content';
 import avatar from 'assets/images/profile-user/ava.png';
 import { userProfileStyle } from 'module/page/profile-user/style';
-import { actionUpdateUser } from 'redux/user/action';
+import { actionUpdateUser, actionClearUserType } from 'redux/user/action';
 // material-UI components
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -20,6 +20,7 @@ function UserProfile() {
   const history = useHistory();
   const dispatch = useDispatch();
   const informationUser = useSelector((state) => state.user.data);
+  const typeToastUser = useSelector((state) => state.user.type);
   const { token } = useSelector((state) => state.user);
   let inputNameRef = useRef();
   let inputEmailRef = useRef();
@@ -44,6 +45,12 @@ function UserProfile() {
       alert('Password is not the same, type again!');
     }
   };
+
+  //LIFECYCLE
+  useEffect(() => {
+    !!typeToastUser && dispatch(actionClearUserType());
+  }, typeToastUser);
+
   console.log('UserProfile');
   return (
     <BodyContent>
@@ -112,6 +119,7 @@ function UserProfile() {
         >
           Save
         </Button>
+        <br />
         <Button variant="outlined" color="default" onClick={handleGoBack}>
           Back
         </Button>

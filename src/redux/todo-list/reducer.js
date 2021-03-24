@@ -9,7 +9,7 @@ const initialState = {
 
 const storeTodoList = (state = initialState, action) => {
   switch (action.type) {
-    // testing
+    // handle for fetch tasks
     case typeTodoList.GET_ALL_TASKS:
       return {
         ...state,
@@ -28,6 +28,73 @@ const storeTodoList = (state = initialState, action) => {
         request: false,
         type: typeTodoList.GET_ALL_TASKS_FAILED,
         error: action.error,
+      };
+    // handle for create new task
+    case typeTodoList.ADD_TASK:
+      return {
+        ...state,
+        request: true,
+      };
+    case typeTodoList.ADD_TASK_SUCCEEDED:
+      return {
+        ...state,
+        request: false,
+        tasks: [...state.tasks, action.newTask],
+        type: typeTodoList.ADD_TASK_SUCCEEDED,
+      };
+    case typeTodoList.ADD_TASK_FAILED:
+      return {
+        ...state,
+        request: false,
+        type: typeTodoList.ADD_TASK_FAILED,
+        error: action.error,
+      };
+    //handle remove task
+    case typeTodoList.REMOVE_TASK:
+      return {
+        ...state,
+        request: true,
+      };
+    case typeTodoList.REMOVE_TASK_SUCCEEDED:
+      return {
+        ...state,
+        request: false,
+        tasks: state.tasks.filter((task) => task._id !== action._id),
+        type: typeTodoList.REMOVE_TASK_SUCCEEDED,
+      };
+    case typeTodoList.REMOVE_TASK_FAILED:
+      return {
+        ...state,
+        request: false,
+        type: typeTodoList.REMOVE_TASK_FAILED,
+        error: action.error,
+      };
+    //handle update task
+    case typeTodoList.UPDATE_TASK:
+      return {
+        ...state,
+        request: true,
+      };
+    case typeTodoList.UPDATE_TASK_SUCCEEDED:
+      return {
+        ...state,
+        request: false,
+        tasks: state.tasks.map((item) =>
+          item._id === action._id ? (item = action.taskUpdate) : item
+        ),
+        type: typeTodoList.UPDATE_TASK_SUCCEEDED,
+      };
+    case typeTodoList.UPDATE_TASK_FAILED:
+      return {
+        ...state,
+        request: false,
+        type: typeTodoList.UPDATE_TASK_FAILED,
+        error: action.error,
+      };
+    case typeTodoList.CLEAR_TYPE_TODO_LIST:
+      return {
+        ...state,
+        type: null,
       };
     default:
       return state;

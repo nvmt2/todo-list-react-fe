@@ -4,16 +4,23 @@ import { toast } from 'react-toastify';
 
 export const getMessStatus = (type) => {
   switch (type) {
-    //type of actions Todo list
-    // case typeTodoList.ADD_NEW_TASK_SUCCEEDED:
-    //   return 'Successfully adding new task';
-    // case typeTodoList.ADD_NEW_TASK_FAILED:
-    //   return 'Failed adding new task';
-    // case typeTodoList.REMOVE_TASK_SUCCEEDED:
-    //   return 'Successfully removing a task';
-    // case typeTodoList.REMOVE_TASK_FAILED:
-    //   return 'Failed removing a task';
-
+    //type of actions todo list
+    case typeTodoList.GET_ALL_TASKS_SUCCEEDED:
+      return 'Successfully fetch all tasks';
+    case typeTodoList.GET_ALL_TASKS_FAILED:
+      return 'Failed fetch task';
+    case typeTodoList.ADD_TASK_SUCCEEDED:
+      return 'Successfully adding new task';
+    case typeTodoList.ADD_TASK_FAILED:
+      return 'Failed adding new task';
+    case typeTodoList.REMOVE_TASK_SUCCEEDED:
+      return 'Successfully removing new task';
+    case typeTodoList.REMOVE_TASK_FAILED:
+      return 'Failed removing new task';
+    case typeTodoList.UPDATE_TASK_SUCCEEDED:
+      return 'Successfully updating new task';
+    case typeTodoList.UPDATE_TASK_FAILED:
+      return 'Failed updating new task';
     //type of action Authentication
     case typeUser.SIGN_IN_SUCCEEDED:
       return 'Successfully sign in';

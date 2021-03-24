@@ -7,45 +7,34 @@
     <style>
       body {
         margin: 0;
-        padding: 0;
       }
-      .parent {
-        display: grid;
-        grid-template-columns: minmax(150px, 15%) 1fr;
-        padding: 0;
-        margin: 0;
-      }
-
-      .sidebar {
-        height: 100vh;
-        border: 1px solid rgb(255, 0, 0);
-        font-size: 2rem;
-        text-align: center;
-      }
-
-      .content {
-        padding: 2rem;
-        border: 1px solid #000;
-      }
-      .content-form {
-        margin: 50px;
-      }
-      .my-button {
+      .wrapper-loading {
         position: absolute;
-        right: 0;
-        bottom: 0;
+        left: 0px;
+        top: 0px;
+        background-color: rgba(97, 97, 97, 0.2);
+        padding: 45vh 45vw;
+        height: 100vh;
+        width: 100vw;
+        box-sizing: border-box;
+      }
+      .icon-loading {
+        background-image: url('https://s3.us-east-2.amazonaws.com/jms-s3-cx-rel-p-pmc4/assets/profilejms/images/loading.gif');
+        /* background-image: url('https://media4.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif'); */
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        height: 50px;
+        width: 50px;
+        /* z-index: 99; */
       }
     </style>
   </head>
   <body>
-    <div class="parent">
-      <div class="sidebar">1</div>
-      <div class="content">
-        <div class="content-form">
-          2
-          <button class="my-button">add</button>
-        </div>
+    <header>Title</header>
+    <main>
+      <div class="wrapper-loading">
+        <div class="icon-loading"></div>
       </div>
-    </div>
+    </main>
   </body>
 </html>

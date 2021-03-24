@@ -53,8 +53,8 @@ function SignIn() {
 
   console.log('SignIn');
   return (
-    <div>
-      <Box className={classes.root} maxWidth="sm">
+    <Box className={classes.root}>
+      <Box className={classes.boxSignIn}>
         <Box className={classes.title}>
           <img src={logo} alt="hi" height="50px" width="200px" />
         </Box>
@@ -130,7 +130,7 @@ function SignIn() {
           Facebook
         </Button>
       </Box>
-    </div>
+    </Box>
   );
 }
 

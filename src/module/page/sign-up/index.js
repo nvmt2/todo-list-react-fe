@@ -37,64 +37,66 @@ function SignUp() {
   console.log('SignUp: ');
 
   return (
-    <Box className={classes.root} maxWidth="sm">
-      <Box className={classes.title}>
-        <img src={logo} alt="hi" height="50px" width="200px" />
-      </Box>
-      <Typography
-        className={classes.subTitle1}
-        variant="subtitle1"
-        gutterBottom
-      >
-        Create an account
-      </Typography>
-      <Typography
-        className={classes.subTitle2}
-        variant="subtitle2"
-        gutterBottom
-      >
-        Register new your account
-      </Typography>
-      <form>
-        <Box className={classes.signInForm}>
-          <TextField
-            type="text"
-            id="outlined-basic"
-            label="Enter your name"
-            variant="outlined"
-            inputRef={inputNameRef}
-          />
-          <TextField
-            type="email"
-            id="outlined-basic"
-            label="Enter your email"
-            variant="outlined"
-            inputRef={inputEmailRef}
-          />
-          <TextField
-            type="password"
-            id="outlined-basic"
-            label="Enter password"
-            variant="outlined"
-            inputRef={inputPasswordRef}
-          />
+    <Box className={classes.root}>
+      <Box className={classes.boxSignUp} maxWidth="sm">
+        <Box className={classes.title}>
+          <img src={logo} alt="hi" height="50px" width="200px" />
         </Box>
-      </form>
-      <Button
-        className={classes.submitButton}
-        variant="contained"
-        color="primary"
-        onClick={handleSignUp}
-      >
-        Submit
-      </Button>
-      <Typography
-        className={classes.subTitle2}
-        variant="subtitle1"
-        gutterBottom
-      >
-        <NavLink to="/signIn">I already had an account</NavLink>
-      </Typography>
+        <Typography
+          className={classes.subTitle1}
+          variant="subtitle1"
+          gutterBottom
+        >
+          Create an account
+        </Typography>
+        <Typography
+          className={classes.subTitle2}
+          variant="subtitle2"
+          gutterBottom
+        >
+          Register new your account
+        </Typography>
+        <form>
+          <Box className={classes.signInForm}>
+            <TextField
+              type="text"
+              id="outlined-basic"
+              label="Enter your name"
+              variant="outlined"
+              inputRef={inputNameRef}
+            />
+            <TextField
+              type="email"
+              id="outlined-basic"
+              label="Enter your email"
+              variant="outlined"
+              inputRef={inputEmailRef}
+            />
+            <TextField
+              type="password"
+              id="outlined-basic"
+              label="Enter password"
+              variant="outlined"
+              inputRef={inputPasswordRef}
+            />
+          </Box>
+        </form>
+        <Button
+          className={classes.submitButton}
+          variant="contained"
+          color="primary"
+          onClick={handleSignUp}
+        >
+          Submit
+        </Button>
+        <Typography
+          className={classes.subTitle2}
+          variant="subtitle1"
+          gutterBottom
+        >
+          <NavLink to="/signIn">I already had an account</NavLink>
+        </Typography>
+      </Box>
     </Box>
   );
 }

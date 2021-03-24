@@ -2,12 +2,16 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const signInStyle = makeStyles((them) => ({
   root: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+  },
+  boxSignIn: {
     width: '50%',
-    margin: 'auto',
-    marginTop: '50px',
     padding: '40px 100px',
     border: '1px solid #eaeaea',
-    boxShadow: '5px 5px 15px 5px #efefef',
+    boxShadow: '0 25px 50px -12px #b2b2b2',
     borderRadius: '5px',
   },
   title: {

@@ -38,3 +38,13 @@ export const removeTask = (idTask, token) => {
   };
   return axiosClient.delete(endpoint, myHeader);
 };
+
+export const addTask = (payload, token) => {
+  let endpoint = '/task';
+  let myHeader = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  return axiosClient.post(endpoint, payload, myHeader);
+};

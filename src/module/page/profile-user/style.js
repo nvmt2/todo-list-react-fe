@@ -1,11 +1,14 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { backgroundColorWhite, borderGrayColor } from 'style/mixin';
+
 export const userProfileStyle = makeStyles((them) => ({
   root: {
     width: '50%',
-    margin: '10px auto',
+    margin: '20px auto',
     padding: '10px 20px',
-    border: '1px solid gray',
     borderRadius: '5px',
+    border: `1px solid ${borderGrayColor}`,
+    backgroundColor: backgroundColorWhite,
     '& h3': {
       fontSize: '18px',
       fontWeight: 'bold',
@@ -17,7 +20,7 @@ export const userProfileStyle = makeStyles((them) => ({
     },
     '& .MuiFormControl-root': {
       display: 'block',
-      margin: '15px 10px',
+      margin: '15px 0',
     },
     '& .MuiInputBase-root': {
       width: '80%',
@@ -27,7 +30,7 @@ export const userProfileStyle = makeStyles((them) => ({
     color: '#3f51b5',
   },
   buttonSave: {
-    margin: '10px',
+    marginBottom: 10,
   },
   wrapperUploadForm: {
     padding: '0 10px',
