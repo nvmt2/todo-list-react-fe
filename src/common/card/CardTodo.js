@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { actionRemoveTask, actionUpdateTask } from 'redux/todo-list/action';
+//internal modules
+import { actionOpenDialogEditTask } from 'redux/dialog/action';
+import { actionRemoveTask } from 'redux/todo-list/action';
 //material-ui component
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -8,12 +10,12 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 //internal modules
-import { styleHome } from 'module/page/home/style';
+import { styleCard } from 'common/card/style';
 
 function CardTodo(props) {
   //STATE
   let { description, completed, updatedAt, createdAt, _id } = props;
-  const classes = styleHome();
+  const classes = styleCard();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.user);
 
@@ -22,10 +24,11 @@ function CardTodo(props) {
     dispatch(actionRemoveTask(_id, token));
   };
   const handleEditTask = () => {
-    let taskUpdate = {
-      description: 'update',
+    let payload = {
+      _id,
+      description,
     };
-    dispatch(actionUpdateTask(_id, taskUpdate, token));
+    dispatch(actionOpenDialogEditTask(payload));
   };
 
   //LIFECYCLE

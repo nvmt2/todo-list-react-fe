@@ -4,7 +4,7 @@ import { store } from 'redux/store';
 import WrapRouter from 'router/WrapRouter';
 import MyToast from 'common/toast';
 import LoadingIcon from 'common/loading';
-import MyDialog from 'common/dialog';
+import DialogControl from 'common/dialog/DialogControl';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <WrapRouter />
         <MyToast />
         <LoadingIcon />
-        <MyDialog />
+        <DialogControl />
       </Provider>
     </div>
   );

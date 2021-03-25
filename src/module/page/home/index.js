@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import BodyContent from 'layout/body-content';
 import {
   actionGetAllTasks,
-  actionAddNewTask,
   actionClearTypeTodoList,
 } from 'redux/todo-list/action';
+import { actionOpenDialogAddTask } from 'redux/dialog/action';
 import { styleHome } from 'module/page/home/style';
 // internal component
-import CardTodo from 'module/page/home/CardTodo';
+import CardTodo from 'common/card/CardTodo';
 //material-ui component
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -28,10 +28,7 @@ function Home() {
 
   //METHOD
   const handleCreateNewTask = () => {
-    let body = {
-      description: 'Toi',
-    };
-    dispatch(actionAddNewTask(body, token));
+    dispatch(actionOpenDialogAddTask());
   };
   const getAllTasks = () => {
     dispatch(actionGetAllTasks(token));
@@ -41,7 +38,6 @@ function Home() {
   useEffect(() => {
     !tasks && getAllTasks();
   }, [tasks]);
-
   useEffect(() => {
     !!typeToastOfTodoList && dispatch(actionClearTypeTodoList());
   }, [typeToastOfTodoList]);

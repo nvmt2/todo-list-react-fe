@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,6 +12,9 @@ const navLinkStyle = makeStyles((them) => ({
     fontWeight: '600',
     margin: '2px',
   },
+  active: {
+    color: 'blue',
+  },
 }));
 
 function MyNavLink(props) {
@@ -21,18 +24,21 @@ function MyNavLink(props) {
   const history = useHistory();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.user);
+  const [isActive, setIsActive] = useState(false);
 
+  //METHOD
   const handleClick = () => {
     if (path === '/logout') {
       dispatch(actionSignOut(token));
     } else {
+      setIsActive(true);
       history.push(path);
     }
   };
-
+  console.log('MyNavLink', isActive);
   return (
     <Button
-      className={classes.root}
+      className={`${classes.root} ${isActive && classes.active}`}
       startIcon={icon}
       onClick={handleClick}
       {...rest}

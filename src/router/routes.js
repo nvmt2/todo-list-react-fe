@@ -1,5 +1,5 @@
 import Home from 'module/page/home';
-import NotFound from 'module/page/error/NotFound';
+import NotFound from 'module/page/error';
 import UserProfile from 'module/page/profile-user';
 import SignIn from 'module/page/sign-in';
 import SignUp from 'module/page/sign-up';

@@ -1,30 +1,16 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { backgroundColorWhite, borderGrayColor } from 'style/mixin';
-
+import {
+  backgroundColorWhite,
+  borderGrayColor,
+  titleColorGray,
+} from 'style/mixin';
+//buttonAdd, body, titleShape
 export const styleHome = makeStyles({
   body: {
     display: 'flex',
     flexWrap: 'wrap',
   },
-  parentCard: {
-    minWidth: 275,
-    maxWidth: 380,
-    margin: '10px 10px 10px 0px',
-    padding: 5,
-    border: `1px solid ${borderGrayColor}`,
-  },
-  time: {
-    color: 'rgb(97, 97, 97)',
-    marginBottom: 15,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  pos: {
-    marginBottom: 12,
-  },
+
   titleShape: {
     padding: '30px 30px',
     marginTop: 5,
@@ -33,7 +19,7 @@ export const styleHome = makeStyles({
     border: `1px solid ${borderGrayColor}`,
     backgroundColor: backgroundColorWhite,
     '& > h3': {
-      color: 'rgb(97, 97, 97)',
+      color: titleColorGray,
       fontWeight: '600',
       fontSize: '18px',
     },

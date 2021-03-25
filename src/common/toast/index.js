@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 //internal modules
-import { getKindOfToast } from 'common/toast/getKindOfToast';
+import { getKindOfToast } from 'helper/getKindOfToast';
 
 function MyToast() {
   // STATE

@@ -1,5 +1,5 @@
 import { typeTodoList } from 'redux/todo-list/constance';
-
+import { typeUser } from 'redux/user/constance';
 const initialState = {
   tasks: null,
   request: false,
@@ -21,6 +21,7 @@ const storeTodoList = (state = initialState, action) => {
         request: false,
         tasks: action.data,
         type: typeTodoList.GET_ALL_TASKS_SUCCEEDED,
+        error: null,
       };
     case typeTodoList.GET_ALL_TASKS_FAILED:
       return {
@@ -41,6 +42,7 @@ const storeTodoList = (state = initialState, action) => {
         request: false,
         tasks: [...state.tasks, action.newTask],
         type: typeTodoList.ADD_TASK_SUCCEEDED,
+        error: null,
       };
     case typeTodoList.ADD_TASK_FAILED:
       return {
@@ -61,6 +63,7 @@ const storeTodoList = (state = initialState, action) => {
         request: false,
         tasks: state.tasks.filter((task) => task._id !== action._id),
         type: typeTodoList.REMOVE_TASK_SUCCEEDED,
+        error: null,
       };
     case typeTodoList.REMOVE_TASK_FAILED:
       return {
@@ -83,6 +86,7 @@ const storeTodoList = (state = initialState, action) => {
           item._id === action._id ? (item = action.taskUpdate) : item
         ),
         type: typeTodoList.UPDATE_TASK_SUCCEEDED,
+        error: null,
       };
     case typeTodoList.UPDATE_TASK_FAILED:
       return {
@@ -91,11 +95,15 @@ const storeTodoList = (state = initialState, action) => {
         type: typeTodoList.UPDATE_TASK_FAILED,
         error: action.error,
       };
+    //clear type
     case typeTodoList.CLEAR_TYPE_TODO_LIST:
       return {
         ...state,
         type: null,
       };
+    //clear tasks when system sign out
+    case typeUser.SIGN_OUT_SUCCEEDED:
+      return (state = initialState);
     default:
       return state;
   }
