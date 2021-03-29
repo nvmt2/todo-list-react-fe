@@ -1,8 +1,4 @@
 import axiosClient from 'service/axiosClient';
-//minhtoi@gmail.com
-//12345678
-//tamtran@gmail.com
-//12345678
 
 export const signUp = (payload) => {
   let endpoint = '/user/register';
