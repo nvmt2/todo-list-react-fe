@@ -20,9 +20,10 @@
 | code CRUD todo list feature              |    8h    |
 | code toast feature                       |    4h    |
 | code side effect ( loading, validation ) |    6h    |
+| Breaking time each days                  |   10h    |
 | testing & fix bug                        |   16h    |
 | release                                  |    2h    |
-| total                                    |   68h    |
+| total                                    |   78h    |
 
 **note** The above time table only counts the working time, not include break times, and personal work times
 
