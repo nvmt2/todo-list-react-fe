@@ -4,6 +4,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 // internal modules
 import { actionSignIn } from 'redux/user/action';
 import logo from 'assets/images/logo1.png';
+import { signInStyle } from 'module/page/sign-in/style';
 // material-UI component
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -14,54 +15,10 @@ import Box from '@material-ui/core/Box';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyle = makeStyles((them) => ({
-  title: {
-    margin: '20px 0',
-  },
-  subTitle1: {
-    fontWeight: 'bold',
-    fontSize: '18px',
-    margin: '25px 0',
-  },
-  subTitle2: {
-    color: 'rgb(97, 97, 97)',
-    fontSize: '14px',
-  },
-  gitHubButton: {
-    color: 'white',
-    backgroundColor: 'black',
-    minWidth: '100px',
-    padding: '12px 30px',
-    marginRight: '8px',
-  },
-  linkedInButton: {
-    minWidth: '100px',
-    padding: '12px 30px',
-    marginRight: '8px',
-  },
-  facebookButton: {
-    minWidth: '100px',
-    padding: '12px 30px',
-    marginRight: '8px',
-  },
-  submitButton: {
-    fontWeight: 'bold',
-    margin: '15px 0px 50px 0px',
-  },
-  signInForm: {
-    '& > div': {
-      margin: '5px 0',
-      width: '100%',
-    },
-  },
-}));
 
 function SignIn() {
-  const classes = useStyle();
-
   // STATE
+  let classes = signInStyle();
   let dispatch = useDispatch();
   let location = useLocation();
   let history = useHistory();
@@ -79,8 +36,6 @@ function SignIn() {
   console.log('SignIn', location);
   return (
     <div>
-      {/* <h3>Sign In page</h3>
-      <button onClick={signIn}>Sign in</button> */}
       <Container maxWidth="sm">
         <Box className={classes.title}>
           <img src={logo} alt="hi" height="50px" width="200px" />
@@ -140,7 +95,6 @@ function SignIn() {
         <Button
           className={classes.linkedInButton}
           variant="contained"
-          color="secondary"
           startIcon={<LinkedInIcon />}
         >
           LinkedIn

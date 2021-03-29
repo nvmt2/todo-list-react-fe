@@ -5,18 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      html,
       body {
         margin: 0;
-        height: 100%;
+        padding: 0;
       }
       .parent {
-        height: 100%;
-        border: 1px solid red;
+        display: grid;
+        grid-template-columns: minmax(150px, 15%) 1fr;
+        padding: 0;
+        margin: 0;
+      }
+
+      .sidebar {
+        height: 100vh;
+        background: lightpink;
+        font-size: 2rem;
+        text-align: center;
+      }
+
+      .content {
+        padding: 2rem;
+        background: red;
+      }
+      .content-form {
+        margin: 50px;
       }
     </style>
   </head>
   <body>
-    <div class="parent"></div>
+    <div class="parent">
+      <div class="sidebar">ajsdasd</div>
+      <div class="content">
+        <div class="content-form">asdsad</div>
+      </div>
+    </div>
   </body>
 </html>
