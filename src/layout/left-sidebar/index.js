@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // internal modules
 import logo from 'assets/images/logo1.png';
-import MenuSidebar from 'layout/left-sidebar/MenuSidebar';
+import MenuSidebar from 'common/nav/MenuLink';
+// import { leftSidebarStyle } from 'layout/left-sidebar/style';
+import { getUserImage } from 'service/userApi';
 //material-ui component
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
@@ -9,8 +11,9 @@ import Badge from '@material-ui/core/Badge';
 //material-ui icon
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import { makeStyles } from '@material-ui/core/styles';
+import { primaryColor } from 'style/variable';
 
-const leftSidebarStyle = makeStyles((theme) => ({
+export const leftSidebarStyle = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -25,9 +28,13 @@ const leftSidebarStyle = makeStyles((theme) => ({
   bottomSideBar: {
     marginLeft: '20px',
   },
+  notification: {
+    margin: '5px 20%',
+    display: 'inline-block',
+  },
   profileAva: {
     margin: '0 10%',
-    backgroundColor: '#3f51b5',
+    backgroundColor: primaryColor,
     width: theme.spacing(7),
     height: theme.spacing(7),
   },
@@ -35,6 +42,22 @@ const leftSidebarStyle = makeStyles((theme) => ({
 
 function LeftSidebar() {
   let classes = leftSidebarStyle();
+  const [src, setSrc] = useState(null);
+
+  const getImage = () => {
+    getUserImage('605452a21a4f9d0017e35d6c')
+      .then((baseImage) => {
+        setSrc(baseImage.request);
+        console.log('getImage', baseImage);
+      })
+      .catch((err) => console.log('ERR_getImage: ', err));
+  };
+
+  useEffect(() => {
+    getImage();
+  }, []);
+  console.log('LeftSidebar');
+
   return (
     <Box className={classes.root}>
       <Box>
@@ -42,10 +65,18 @@ function LeftSidebar() {
         <MenuSidebar />
       </Box>
       <Box className={classes.bottomSideBar}>
-        {/* <Badge badgeContent={4} color="primary">
+        <Badge
+          className={classes.notification}
+          badgeContent={4}
+          color="primary"
+        >
           <NotificationsActiveIcon />
-        </Badge> */}
-        <Avatar className={classes.profileAva} alt="avatar" />
+        </Badge>
+        <Avatar
+          className={classes.profileAva}
+          src={src && src.responseURL}
+          alt="avatar"
+        />
       </Box>
     </Box>
   );

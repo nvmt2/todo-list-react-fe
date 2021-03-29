@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 import { ToastContainer, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 //internal modules
-import { getKindOfToast } from 'common/toast/getKindOfToast';
+import { getKindOfToast } from 'helper/getKindOfToast';
 
 function MyToast() {
   // STATE
-  let typeUser = useSelector((state) => state.user.type);
-  let typeTodo = useSelector((state) => state.todoList.type);
+  const typeUser = useSelector((state) => state.user.type);
+  const typeTodo = useSelector((state) => state.todoList.type);
   let type = typeUser || typeTodo;
   let configPositionToast = {
     position: 'top-right',
@@ -26,11 +26,6 @@ function MyToast() {
   // LIFECYCLE
   useEffect(() => {
     type && getKindOfToast(type);
-    // type.length !== 0 &&
-    //   type.map((item) => {
-    //     getKindOfToast(item);
-    //     dispatch(removeToast());
-    //   });
   }, [type]);
   console.log('MyToast');
   return <ToastContainer {...configPositionToast} />;
