@@ -1,5 +1,5 @@
-import { typeTodoList } from 'redux/todo-list/constance';
-import { typeUser } from 'redux/user/constance';
+import { typeTodoList } from 'module/page/main/redux/constance';
+import { typeUser } from 'module/page/account/redux/constance';
 import { toast } from 'react-toastify';
 
 export const getMessStatus = (type) => {

@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { backgroundColorLightGray } from 'style/mixin.js';
+import { backgroundColorLightGray } from 'style/variable.js';
 
 export const bodyContentStyle = makeStyles((them) => ({
   parent: {

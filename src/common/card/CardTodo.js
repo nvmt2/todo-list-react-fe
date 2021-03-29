@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import moment from 'moment';
 //internal modules
-import { actionOpenDialogEditTask } from 'redux/dialog/action';
-import { actionRemoveTask } from 'redux/todo-list/action';
+import { actionOpenDialogEditTask } from 'common/dialog/redux/action';
+import { actionRemoveTask } from 'module/page/main/redux/action';
 //material-ui component
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -18,6 +19,7 @@ function CardTodo(props) {
   const classes = styleCard();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.user);
+  let timeToFromNow = moment(createdAt).fromNow();
 
   //METHOD
   const handleRemoveTask = () => {
@@ -39,17 +41,17 @@ function CardTodo(props) {
           My work daily
         </Typography>
         <Typography className={classes.time} variant="subtitle2" component="p">
-          {createdAt}
+          {timeToFromNow}
         </Typography>
         <Typography variant="body2" component="p">
           {description}
         </Typography>
       </CardContent>
       <CardActions>
+        <Button size="small">View detail</Button>
         <Button size="small" onClick={handleRemoveTask}>
-          Remove task
+          Done
         </Button>
-        <Button size="small">Done</Button>
         <Button size="small" onClick={handleEditTask}>
           Edit
         </Button>

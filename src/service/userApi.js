@@ -26,3 +26,17 @@ export const updateUser = (payload, token) => {
   };
   return axiosClient.put(endpoint, payload, myHeader);
 };
+export const uploadUserImage = (formData, token) => {
+  let endpoint = '/user/me/avatar';
+  let myHeader = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  return axiosClient.post(endpoint, formData, myHeader);
+};
+export const getUserImage = (idUser) => {
+  let endpoint = `/user/${idUser}/avatar`;
+
+  return axiosClient.get(endpoint);
+};

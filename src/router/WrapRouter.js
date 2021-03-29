@@ -1,9 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // internal modules
-import { privateRoutes, publicRoutes } from 'router/routes';
-
-// component
+import { privateRoutes, publicRoutes } from 'constance/routes';
+// internal component
 import LayoutBody from 'layout';
 import PrivateRoute from 'router/PrivateRoute';
 

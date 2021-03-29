@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 //toast modules
 import { ToastContainer, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,11 +26,6 @@ function MyToast() {
   // LIFECYCLE
   useEffect(() => {
     type && getKindOfToast(type);
-    // type.length !== 0 &&
-    //   type.map((item) => {
-    //     getKindOfToast(item);
-    //     dispatch(removeToast());
-    //   });
   }, [type]);
   console.log('MyToast');
   return <ToastContainer {...configPositionToast} />;

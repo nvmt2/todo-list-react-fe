@@ -3,7 +3,7 @@ import React from 'react';
 //internal
 import Header from 'layout/header';
 import Footer from 'layout/footer';
-import { backgroundColorLightGray } from 'style/mixin';
+import { backgroundColorLightGray } from 'style/variable';
 
 function LayoutBody(props) {
   return (
