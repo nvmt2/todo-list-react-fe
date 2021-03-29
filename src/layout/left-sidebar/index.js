@@ -16,6 +16,11 @@ const leftSidebarStyle = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     height: '100%',
+    padding: '30px 20px',
+    boxSizing: 'border-box',
+    '& img': {
+      marginBottom: '20px',
+    },
   },
   bottomSideBar: {
     marginLeft: '20px',

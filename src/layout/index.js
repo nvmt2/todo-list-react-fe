@@ -7,9 +7,9 @@ import Footer from 'layout/footer';
 function LayoutBody(props) {
   return (
     <div>
-      <Header />
-      <main style={{ minHeight: '90vh' }}>{props.children}</main>
-      <Footer />
+      {/* <Header /> */}
+      <main style={{ minHeight: '100vh' }}>{props.children}</main>
+      {/* <Footer /> */}
     </div>
   );
 }
