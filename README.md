@@ -25,6 +25,8 @@
 | release                                  |    2h    |
 | total                                    |   78h    |
 
+started by: 16/03/2021
+
 **note** The above time table only counts the working time, not include break times, and personal work times
 
 ## Guide
