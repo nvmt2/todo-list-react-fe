@@ -38,6 +38,9 @@ export const leftSidebarStyle = makeStyles((theme) => ({
     width: theme.spacing(7),
     height: theme.spacing(7),
   },
+  menuSidebar: {
+    marginTop: 20,
+  },
 }));
 
 function LeftSidebar() {
@@ -62,7 +65,7 @@ function LeftSidebar() {
     <Box className={classes.root}>
       <Box>
         <img src={logo} alt="hi" height="40px" width="150px" />
-        <MenuSidebar />
+        <MenuSidebar className={classes.menuSidebar} />
       </Box>
       <Box className={classes.bottomSideBar}>
         <Badge

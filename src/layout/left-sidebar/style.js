@@ -21,5 +21,8 @@ export const leftSidebarStyle = makeStyles((theme) => ({
     backgroundColor: primaryColor,
     width: theme.spacing(7),
     height: theme.spacing(7),
+    '& > img': {
+      margin: 0,
+    },
   },
 }));
