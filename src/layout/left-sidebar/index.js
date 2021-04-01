@@ -22,7 +22,7 @@ export const leftSidebarStyle = makeStyles((theme) => ({
     padding: '30px 20px',
     boxSizing: 'border-box',
     '& img': {
-      marginBottom: '20px',
+      marginBottom: 20,
     },
   },
   bottomSideBar: {
@@ -37,9 +37,9 @@ export const leftSidebarStyle = makeStyles((theme) => ({
     backgroundColor: primaryColor,
     width: theme.spacing(7),
     height: theme.spacing(7),
-  },
-  menuSidebar: {
-    marginTop: 20,
+    '& img': {
+      marginBottom: 0,
+    },
   },
 }));
 
@@ -65,7 +65,7 @@ function LeftSidebar() {
     <Box className={classes.root}>
       <Box>
         <img src={logo} alt="hi" height="40px" width="150px" />
-        <MenuSidebar className={classes.menuSidebar} />
+        <MenuSidebar />
       </Box>
       <Box className={classes.bottomSideBar}>
         <Badge

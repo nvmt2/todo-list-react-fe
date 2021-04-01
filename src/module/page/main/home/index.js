@@ -23,6 +23,7 @@ function Home() {
   const classes = styleHome();
   const dispatch = useDispatch();
   const { tasks } = useSelector((state) => state.todoList);
+  console.log('Home - task: ', tasks);
   const { token } = useSelector((state) => state.user);
   const typeToastOfTodoList = useSelector((state) => state.todoList.type);
 
@@ -41,7 +42,6 @@ function Home() {
   useEffect(() => {
     !!typeToastOfTodoList && dispatch(actionClearTypeTodoList());
   }, [typeToastOfTodoList]);
-  console.log('Home');
 
   return (
     <BodyContent>

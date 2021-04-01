@@ -16,13 +16,17 @@ export const leftSidebarStyle = makeStyles((theme) => ({
   bottomSideBar: {
     marginLeft: '20px',
   },
+  notification: {
+    margin: '5px 20%',
+    display: 'inline-block',
+  },
   profileAva: {
     margin: '0 10%',
     backgroundColor: primaryColor,
     width: theme.spacing(7),
     height: theme.spacing(7),
-    '& > img': {
-      margin: 0,
-    },
+  },
+  menuSidebar: {
+    marginTop: 20,
   },
 }));

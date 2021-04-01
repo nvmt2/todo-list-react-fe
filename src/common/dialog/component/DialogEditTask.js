@@ -48,6 +48,7 @@ function DialogAddTask() {
             label="Title of task"
             type="text"
             variant="outlined"
+            defaultValue="My work daily"
             fullWidth
           />
           <TextField

@@ -29,7 +29,7 @@ function SignIn() {
   const typeToastUser = useSelector((state) => state.user.type);
   let inputEmailRef = useRef();
   let inputPasswordRef = useRef();
-  // const [isError, setIsError] = useState();
+  const [isError, setIsError] = useState();
 
   //METHOD
   const handleSignIn = () => {
@@ -39,14 +39,14 @@ function SignIn() {
     };
     dispatch(actionSignIn(account));
   };
-  // const validateEmail = (event) => {
-  //   let v = event.target.value;
-  //   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-  //     v
-  //   )
-  //     ? setIsError(false)
-  //     : setIsError(true);
-  // };
+  const validateEmail = (event) => {
+    let v = event.target.value;
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+      v
+    )
+      ? setIsError(false)
+      : setIsError(true);
+  };
 
   // LIFECYCLE
   useEffect(() => {
@@ -76,7 +76,7 @@ function SignIn() {
           variant="subtitle2"
           gutterBottom
         >
-          Sign in using a secure link
+          Sign in using a secure email
         </Typography>
         <form>
           <Box className={classes.signInForm}>
@@ -86,9 +86,9 @@ function SignIn() {
               type="email"
               variant="outlined"
               inputRef={inputEmailRef}
-              // error={isError}
-              // helperText={isError ? 'Incorrect email type' : ''}
-              // onChange={validateEmail}
+              error={isError}
+              helperText={isError ? 'Incorrect email type' : ''}
+              onChange={validateEmail}
             />
             <br />
             <TextField
@@ -105,7 +105,7 @@ function SignIn() {
           variant="contained"
           color="primary"
           onClick={handleSignIn}
-          // disabled={isError}
+          disabled={isError}
         >
           Submit
         </Button>
