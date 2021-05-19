@@ -42,7 +42,7 @@ function SignUp() {
     isAuthenticated &&
       (location.state ? history.push(location.state) : history.push('/'));
   }, [isAuthenticated, history, location.state]);
-  console.log('SignUp:');
+
   return (
     <Box className={classes.root}>
       <Box className={classes.boxSignUp} maxWidth="sm">

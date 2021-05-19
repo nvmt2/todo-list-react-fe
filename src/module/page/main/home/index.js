@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // internal modules
 import BodyContent from 'layout/body-content';
@@ -23,9 +23,10 @@ function Home() {
   const classes = styleHome();
   const dispatch = useDispatch();
   const { tasks } = useSelector((state) => state.todoList);
-  console.log('Home - task: ', tasks);
   const { token } = useSelector((state) => state.user);
   const typeToastOfTodoList = useSelector((state) => state.todoList.type);
+  const [data, setData] = useState(null);
+  const [isOnline, setIsOnline] = useState(null);
 
   //METHOD
   const handleCreateNewTask = () => {
@@ -42,14 +43,43 @@ function Home() {
   useEffect(() => {
     !!typeToastOfTodoList && dispatch(actionClearTypeTodoList());
   }, [typeToastOfTodoList]);
-
+  useEffect(() => {
+    let url = 'https://jsonplaceholder.typicode.com/todos/1';
+    fetch(url)
+      .then((res) => {
+        res.json().then((result) => {
+          setIsOnline(true);
+          // setData(result);
+          if (typeof Storage !== 'undefined') {
+            localStorage.setItem('todo', JSON.stringify(result));
+            let collection = localStorage.getItem('todo');
+            setData(JSON.parse(collection));
+          } else {
+            alert('BrW is not support localStorage');
+          }
+        });
+      })
+      .catch(() => {
+        setIsOnline(false);
+        let collection = localStorage.getItem('todo');
+        setData(JSON.parse(collection));
+      });
+  }, []);
   return (
     <BodyContent>
       {/* header */}
       <Box className={classes.titleShape}>
         <Typography variant="h3">
           Todo list for everyone, done right!
+          <br></br>
+          {!!data && data.title}
         </Typography>
+        <p>
+          {isOnline
+            ? "You're online"
+            : "You're offline ( no connect internat )"}
+        </p>
+        <button onClick={() => alert('Hello')}>Click</button>
       </Box>
       {/* body */}
       <Box className={classes.body}>

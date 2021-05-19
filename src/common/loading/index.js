@@ -6,7 +6,6 @@ function LoadingIcon() {
   const isLoadingUser = useSelector((state) => state.user.request);
   const isLoadingTodo = useSelector((state) => state.todoList.request);
   const isLoading = isLoadingUser || isLoadingTodo;
-  console.log('Loading');
 
   const styleLoading = {
     wrapperLoading: {
