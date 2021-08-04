@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 // internal modules
 import { privateRoutes, publicRoutes } from 'constance/routes';
 // internal component
@@ -8,8 +9,8 @@ import PrivateRoute from 'router/PrivateRoute';
 
 function WrapRouter() {
   return (
-    <LayoutBody>
-      <Router>
+    <Router>
+      <LayoutBody>
         <Switch>
           {publicRoutes.map((item, index) => (
             <Route key={index} {...item} />
@@ -18,8 +19,8 @@ function WrapRouter() {
             <PrivateRoute key={index} {...item} />
           ))}
         </Switch>
-      </Router>
-    </LayoutBody>
+      </LayoutBody>
+    </Router>
   );
 }
 
