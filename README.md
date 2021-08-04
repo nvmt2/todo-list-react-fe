@@ -124,3 +124,14 @@ A cascading style sheet (CSS) is a Web page derived from multiple sources with a
 
 Started by: 16/03/2021
 Released by: 30/03/2021
+
+## deploy on github page
+
+**step deploy react with router and env file**: https://www.freecodecamp.org/news/deploy-a-react-app-to-github-pages/
+
+**update code after deploy**:
+
+- switch deploy-git-pages
+- update code
+- run npm run deploy
+- push code updated on remote

@@ -115,6 +115,7 @@ function SignIn() {
           gutterBottom
         >
           <NavLink to="/signUp">Create new account</NavLink>, or connect with
+          application
         </Typography>
         <Button
           className={classes.gitHubButton}
