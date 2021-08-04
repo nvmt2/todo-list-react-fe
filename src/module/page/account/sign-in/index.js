@@ -69,7 +69,7 @@ function SignIn() {
           variant="subtitle1"
           gutterBottom
         >
-          Sign in with your account
+          Sign in with your account - testing
         </Typography>
         <Typography
           className={classes.subTitle2}
