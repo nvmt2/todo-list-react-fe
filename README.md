@@ -32,6 +32,10 @@ and access them from React app like so:
 process.env.REACT_APP_API_URL
 process.env.REACT_APP_API_KEY
 
+Fake account:
+acc: minhtoi@gmail.com ( 1 => 7)
+password: 12345678
+
 ## Frontend Technical Stack
 
 This is the list of important technologies that would be used to implement the project.
