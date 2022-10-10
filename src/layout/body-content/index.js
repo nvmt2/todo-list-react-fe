@@ -9,9 +9,9 @@ function BodyContent(props) {
   const classes = bodyContentStyle();
   return (
     <Box className={classes.parent}>
-      <Box className={classes.sidebar}>
+      {/* <Box className={classes.sidebar}>
         <LeftSidebar />
-      </Box>
+      </Box> */}
       <Box>{props.children}</Box>
     </Box>
   );

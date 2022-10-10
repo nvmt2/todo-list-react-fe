@@ -37,18 +37,18 @@ function CardTodo(props) {
   return (
     <Card className={classes.parentCard} variant="outlined">
       <CardContent>
-        <Typography variant="h5" component="h2">
+        {/* <Typography variant="h5" component="h2">
           My work daily
+        </Typography> */}
+        <Typography variant="h5" component="p">
+          {description}
         </Typography>
         <Typography className={classes.time} variant="subtitle2" component="p">
           {timeToFromNow}
         </Typography>
-        <Typography variant="body2" component="p">
-          {description}
-        </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">View detail</Button>
+        {/* <Button size="small">View detail</Button> */}
         <Button size="small" onClick={handleRemoveTask}>
           Done
         </Button>

@@ -7,6 +7,7 @@ import {
 //buttonAdd, body, titleShape
 export const styleHome = makeStyles({
   body: {
+    padding: '0 10px',
     display: 'flex',
     flexWrap: 'wrap',
   },
@@ -26,8 +27,8 @@ export const styleHome = makeStyles({
   },
   buttonAdd: {
     position: 'fixed',
-    right: '50px',
-    bottom: '35px',
+    right: '20px',
+    bottom: '25px',
     borderRadius: '50% 50%',
     backgroundColor: '#f3f4ff',
     boxShadow: '10px 10px 10px #c7c7c7',

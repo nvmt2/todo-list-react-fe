@@ -43,14 +43,14 @@ function DialogAddTask() {
       </DialogTitle>
       <DialogContent dividers>
         <form className={classes.formDialog}>
-          <TextField
+          {/* <TextField
             id="outlined-basic"
             label="Title of task"
             type="text"
             variant="outlined"
             defaultValue="My work daily"
             fullWidth
-          />
+          /> */}
           <TextField
             id="outlined-basic"
             label="Description of task"

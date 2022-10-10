@@ -39,6 +39,7 @@ function Home() {
   useEffect(() => {
     !tasks && getAllTasks();
   }, [tasks]);
+
   useEffect(() => {
     !!typeToastOfTodoList && dispatch(actionClearTypeTodoList());
   }, [typeToastOfTodoList]);
@@ -48,7 +49,8 @@ function Home() {
       {/* header */}
       <Box className={classes.titleShape}>
         <Typography variant="h3">
-          Todo list for everyone, done right!
+          {/* Todo list for everyone, done right! */}
+          Todo list for, Toi 💓 Nheo
         </Typography>
       </Box>
       {/* body */}
@@ -65,12 +67,12 @@ function Home() {
       >
         <AddCircleIcon fontSize="large" />
       </IconButton>
-      <Pagination
+      {/* <Pagination
         className={classes.pagination}
         count={10}
         variant="outlined"
         shape="rounded"
-      />
+      /> */}
     </BodyContent>
   );
 }

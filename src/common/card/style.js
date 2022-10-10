@@ -3,8 +3,8 @@ import { borderGrayColor } from 'style/variable';
 
 export const styleCard = makeStyles({
   parentCard: {
-    minWidth: 275,
-    maxWidth: 380,
+    minWidth: 340,
+    maxWidth: 375,
     margin: '10px 10px 0px 0px',
     padding: 5,
     border: `1px solid ${borderGrayColor}`,
