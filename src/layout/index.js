@@ -20,7 +20,6 @@ function LayoutBody(props) {
           backgroundPosition: 'center',
         }}
       >
-        {/* <img src={backgroundCouple} alt="bg" /> */}
         {props.children}
       </main>
       {/* <Footer /> */}

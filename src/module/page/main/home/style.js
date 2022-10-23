@@ -13,7 +13,7 @@ export const styleHome = makeStyles({
   },
 
   titleShape: {
-    padding: '30px 30px',
+    padding: '30px 10px',
     marginTop: 5,
     marginRight: 5,
     borderRadius: 5,

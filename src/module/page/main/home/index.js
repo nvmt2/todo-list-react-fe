@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // internal modules
 import BodyContent from 'layout/body-content';
@@ -15,8 +15,11 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Pagination from '@material-ui/lab/Pagination';
 import IconButton from '@material-ui/core/IconButton';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 //material-ui icons
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
 
 function Home() {
   // STATE
@@ -25,8 +28,14 @@ function Home() {
   const { tasks } = useSelector((state) => state.todoList);
   const { token } = useSelector((state) => state.user);
   const typeToastOfTodoList = useSelector((state) => state.todoList.type);
+  const [isOpenSidebar, setIsOpenSidebar] = useState(false);
+  const [tabIndex, setTabIndex] = useState(0);
 
   //METHOD
+  const handleChangeTab = (event, newValue) => {
+    setTabIndex(newValue);
+  };
+
   const handleCreateNewTask = () => {
     dispatch(actionOpenDialogAddTask());
   };
@@ -39,6 +48,9 @@ function Home() {
     const DONE_CONDITION = ' - done';
     return descriptionTask.includes(DONE_CONDITION);
   };
+
+  const handleOpenSidebar = () => setIsOpenSidebar(true);
+  const handleCloseSidebar = () => setIsOpenSidebar(false);
   //LIFECYCLE
   useEffect(() => {
     !tasks && getAllTasks();
@@ -49,7 +61,10 @@ function Home() {
   }, [typeToastOfTodoList]);
 
   return (
-    <BodyContent>
+    <BodyContent
+      isOpenSidebar={isOpenSidebar}
+      handleCloseSidebar={handleCloseSidebar}
+    >
       {/* header */}
       <Box className={classes.titleShape}>
         <Typography variant="h3">
@@ -57,11 +72,46 @@ function Home() {
           Todo list for, Toi 💓 Nheo
         </Typography>
       </Box>
-      {/* body */}``
-      <Box className={classes.body}>
-        {!!tasks &&
-          tasks.map((item, index) => <CardTodo {...item} key={index} />)}
-      </Box>
+      <Tabs
+        value={tabIndex}
+        onChange={handleChangeTab}
+        indicatorColor="primary"
+        textColor="primary"
+        centered
+      >
+        <Tab label="TODO" />
+        <Tab label="DONE DRAFT" />
+      </Tabs>
+      {/* body */}
+      {tabIndex === 0 && (
+        <Box className={classes.body}>
+          {!!tasks &&
+            tasks.map(
+              (item, index) =>
+                !checkDoneTask(item?.description) && (
+                  <CardTodo
+                    isDisplayEditButton
+                    isDisplayDoneDraftButton
+                    {...item}
+                    key={index}
+                  />
+                )
+            )}
+        </Box>
+      )}
+
+      {tabIndex === 1 && (
+        <Box className={classes.body}>
+          {!!tasks &&
+            tasks.map(
+              (item, index) =>
+                checkDoneTask(item?.description) && (
+                  <CardTodo isDisplayRemoveButton {...item} key={index} />
+                )
+            )}
+        </Box>
+      )}
+
       {/* footer */}
       <IconButton
         className={classes.buttonAdd}

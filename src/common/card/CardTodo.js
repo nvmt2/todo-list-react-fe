@@ -16,7 +16,16 @@ import { styleCard } from 'common/card/style';
 
 function CardTodo(props) {
   //STATE
-  let { description, completed, updatedAt, createdAt, _id } = props;
+  let {
+    description,
+    completed,
+    updatedAt,
+    createdAt,
+    _id,
+    isDisplayRemoveButton,
+    isDisplayEditButton,
+    isDisplayDoneDraftButton,
+  } = props;
   const classes = styleCard();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.user);
@@ -59,15 +68,23 @@ function CardTodo(props) {
       </CardContent>
       <CardActions>
         {/* <Button size="small">View detail</Button> */}
-        {/* <Button size="small" onClick={handleRemoveTask}>
-          Done
-        </Button> */}
-        <Button size="small" onClick={handleSaveDraft}>
-          Done Draft
-        </Button>
-        <Button size="small" onClick={handleEditTask}>
-          Edit
-        </Button>
+        {isDisplayRemoveButton && (
+          <Button size="small" onClick={handleRemoveTask}>
+            REMOVE
+          </Button>
+        )}
+
+        {isDisplayDoneDraftButton && (
+          <Button size="small" onClick={handleSaveDraft}>
+            Done Draft
+          </Button>
+        )}
+
+        {isDisplayEditButton && (
+          <Button size="small" onClick={handleEditTask}>
+            Edit
+          </Button>
+        )}
       </CardActions>
     </Card>
   );
