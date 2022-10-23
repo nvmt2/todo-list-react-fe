@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // internal modules
 import BodyContent from 'layout/body-content';
@@ -23,7 +23,6 @@ function Home() {
   const classes = styleHome();
   const dispatch = useDispatch();
   const { tasks } = useSelector((state) => state.todoList);
-  console.log('Home - task: ', tasks);
   const { token } = useSelector((state) => state.user);
   const typeToastOfTodoList = useSelector((state) => state.todoList.type);
 
@@ -31,10 +30,15 @@ function Home() {
   const handleCreateNewTask = () => {
     dispatch(actionOpenDialogAddTask());
   };
+
   const getAllTasks = () => {
     dispatch(actionGetAllTasks(token));
   };
 
+  const checkDoneTask = (descriptionTask) => {
+    const DONE_CONDITION = ' - done';
+    return descriptionTask.includes(DONE_CONDITION);
+  };
   //LIFECYCLE
   useEffect(() => {
     !tasks && getAllTasks();
@@ -53,7 +57,7 @@ function Home() {
           Todo list for, Toi 💓 Nheo
         </Typography>
       </Box>
-      {/* body */}
+      {/* body */}``
       <Box className={classes.body}>
         {!!tasks &&
           tasks.map((item, index) => <CardTodo {...item} key={index} />)}

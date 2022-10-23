@@ -27,7 +27,6 @@ function MyToast() {
   useEffect(() => {
     type && getKindOfToast(type);
   }, [type]);
-  console.log('MyToast');
   return <ToastContainer {...configPositionToast} />;
 }
 

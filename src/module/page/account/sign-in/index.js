@@ -57,7 +57,6 @@ function SignIn() {
     typeToastUser && dispatch(actionClearUserType());
   }, [typeToastUser, dispatch]);
 
-  console.log('SignIn');
   return (
     <Box className={classes.root}>
       <Box className={classes.boxSignIn}>

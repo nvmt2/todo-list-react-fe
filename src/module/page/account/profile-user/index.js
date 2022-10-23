@@ -63,7 +63,6 @@ function UserProfile() {
     clearUserType();
   }, [clearUserType]);
 
-  console.log('UserProfile');
   return (
     <BodyContent>
       <Box className={classes.root}>

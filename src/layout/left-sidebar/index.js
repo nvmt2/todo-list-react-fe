@@ -51,15 +51,13 @@ function LeftSidebar() {
     getUserImage('605452a21a4f9d0017e35d6c')
       .then((baseImage) => {
         setSrc(baseImage.request);
-        console.log('getImage', baseImage);
       })
-      .catch((err) => console.log('ERR_getImage: ', err));
+      .catch((err) => null);
   };
 
   useEffect(() => {
     getImage();
   }, []);
-  console.log('LeftSidebar');
 
   return (
     <Box className={classes.root}>

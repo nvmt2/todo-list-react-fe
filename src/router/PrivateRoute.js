@@ -6,7 +6,6 @@ function PrivateRoute(props) {
   const { component: Component, path, exact, ...rest } = props;
 
   let { isAuthenticated } = useSelector((state) => state.user);
-  console.log('PrivateRoute');
 
   return (
     <Route

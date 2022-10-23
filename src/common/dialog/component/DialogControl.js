@@ -28,7 +28,6 @@ function DialogControl() {
         return null;
     }
   };
-  console.log('DialogControl');
 
   return (
     <div>

@@ -7,7 +7,6 @@ import { listNavLink } from 'constance/nav';
 function MenuLink() {
   const location = useLocation();
   const endpoint = location.pathname;
-  console.log('MenuSidebar');
 
   return (
     <div>

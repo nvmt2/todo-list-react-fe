@@ -4,6 +4,7 @@ import moment from 'moment';
 //internal modules
 import { actionOpenDialogEditTask } from 'common/dialog/redux/action';
 import { actionRemoveTask } from 'module/page/main/redux/action';
+import { actionUpdateTask } from 'module/page/main/redux/action';
 //material-ui component
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -25,6 +26,15 @@ function CardTodo(props) {
   const handleRemoveTask = () => {
     dispatch(actionRemoveTask(_id, token));
   };
+
+  const handleSaveDraft = () => {
+    let taskUpdate = {
+      description: description + ' - done',
+    };
+
+    dispatch(actionUpdateTask(_id, taskUpdate, token));
+  };
+
   const handleEditTask = () => {
     let payload = {
       _id,
@@ -49,8 +59,11 @@ function CardTodo(props) {
       </CardContent>
       <CardActions>
         {/* <Button size="small">View detail</Button> */}
-        <Button size="small" onClick={handleRemoveTask}>
+        {/* <Button size="small" onClick={handleRemoveTask}>
           Done
+        </Button> */}
+        <Button size="small" onClick={handleSaveDraft}>
+          Done Draft
         </Button>
         <Button size="small" onClick={handleEditTask}>
           Edit
