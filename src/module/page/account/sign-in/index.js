@@ -19,6 +19,18 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import FacebookIcon from '@material-ui/icons/Facebook';
 
+// Firebase
+import {
+  doc,
+  addDoc,
+  collection,
+  onSnapshot,
+  query,
+  updateDoc,
+  deleteDoc,
+} from 'firebase/firestore';
+import { db } from 'firebase';
+
 function SignIn() {
   // STATE
   const classes = signInStyle();
@@ -39,6 +51,7 @@ function SignIn() {
     };
     dispatch(actionSignIn(account));
   };
+
   const validateEmail = (event) => {
     let v = event.target.value;
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -46,6 +59,39 @@ function SignIn() {
     )
       ? setIsError(false)
       : setIsError(true);
+  };
+
+  const handleAddTodo = async (event) => {
+    const title = 'Connect to firebase';
+
+    await addDoc(collection(db, 'todos'), {
+      title,
+      completed: false,
+    });
+  };
+
+  const handleGetAllTodo = async () => {
+    const q = query(collection(db, 'tasks'));
+    const unsub = onSnapshot(q, (querySnapshot) => {
+      let todosQuery = [];
+      querySnapshot.forEach((doc) => {
+        todosQuery.push({
+          ...doc.data(),
+          id: doc.id,
+        });
+      });
+      console.log('todos: ', todosQuery);
+    });
+  };
+
+  const handleEditTodo = async (todo, payload) => {
+    await updateDoc(doc(db, 'todos', todo.id), {
+      title: payload.title,
+    });
+  };
+
+  const handleDeleteTodo = async (id) => {
+    await deleteDoc(doc(db, 'todos', id));
   };
 
   // LIFECYCLE
@@ -138,6 +184,52 @@ function SignIn() {
           startIcon={<FacebookIcon />}
         >
           Facebook
+        </Button>
+
+        <Button
+          className={classes.submitButton}
+          variant="contained"
+          color="primary"
+          onClick={handleAddTodo}
+          // disabled={isError}
+        >
+          Add todo
+        </Button>
+        <Button
+          className={classes.submitButton}
+          variant="contained"
+          color="primary"
+          onClick={handleGetAllTodo}
+          // disabled={isError}
+        >
+          get all todo
+        </Button>
+        <Button
+          className={classes.submitButton}
+          variant="contained"
+          color="primary"
+          onClick={() =>
+            handleEditTodo(
+              {
+                id: 'dn81mCUIVscVEEw32q6X',
+              },
+              {
+                title: `Updated + ${new Date()}`,
+              }
+            )
+          }
+          // disabled={isError}
+        >
+          Edit
+        </Button>
+        <Button
+          className={classes.submitButton}
+          variant="contained"
+          color="primary"
+          onClick={() => handleDeleteTodo('2Kx3k1cjyjCH2YnF2D1D')}
+          // disabled={isError}
+        >
+          Delete
         </Button>
       </Box>
     </Box>
