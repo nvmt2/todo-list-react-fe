@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/todo-list-react-fe/static/css/main.2ae47eeb.chunk.css",
-    "main.js": "/todo-list-react-fe/static/js/main.5199bad1.chunk.js",
-    "main.js.map": "/todo-list-react-fe/static/js/main.5199bad1.chunk.js.map",
-    "runtime-main.js": "/todo-list-react-fe/static/js/runtime-main.daea4102.js",
-    "runtime-main.js.map": "/todo-list-react-fe/static/js/runtime-main.daea4102.js.map",
+    "main.js": "/todo-list-react-fe/static/js/main.3d5b450a.chunk.js",
+    "main.js.map": "/todo-list-react-fe/static/js/main.3d5b450a.chunk.js.map",
+    "runtime-main.js": "/todo-list-react-fe/static/js/runtime-main.c5baedd9.js",
+    "runtime-main.js.map": "/todo-list-react-fe/static/js/runtime-main.c5baedd9.js.map",
     "static/css/2.417ae89d.chunk.css": "/todo-list-react-fe/static/css/2.417ae89d.chunk.css",
-    "static/js/2.1dedd43c.chunk.js": "/todo-list-react-fe/static/js/2.1dedd43c.chunk.js",
-    "static/js/2.1dedd43c.chunk.js.map": "/todo-list-react-fe/static/js/2.1dedd43c.chunk.js.map",
-    "static/js/3.1dc4da09.chunk.js": "/todo-list-react-fe/static/js/3.1dc4da09.chunk.js",
-    "static/js/3.1dc4da09.chunk.js.map": "/todo-list-react-fe/static/js/3.1dc4da09.chunk.js.map",
+    "static/js/2.c81866b9.chunk.js": "/todo-list-react-fe/static/js/2.c81866b9.chunk.js",
+    "static/js/2.c81866b9.chunk.js.map": "/todo-list-react-fe/static/js/2.c81866b9.chunk.js.map",
+    "static/js/3.318d337d.chunk.js": "/todo-list-react-fe/static/js/3.318d337d.chunk.js",
+    "static/js/3.318d337d.chunk.js.map": "/todo-list-react-fe/static/js/3.318d337d.chunk.js.map",
     "index.html": "/todo-list-react-fe/index.html",
     "static/css/2.417ae89d.chunk.css.map": "/todo-list-react-fe/static/css/2.417ae89d.chunk.css.map",
     "static/css/main.2ae47eeb.chunk.css.map": "/todo-list-react-fe/static/css/main.2ae47eeb.chunk.css.map",
-    "static/js/2.1dedd43c.chunk.js.LICENSE.txt": "/todo-list-react-fe/static/js/2.1dedd43c.chunk.js.LICENSE.txt",
+    "static/js/2.c81866b9.chunk.js.LICENSE.txt": "/todo-list-react-fe/static/js/2.c81866b9.chunk.js.LICENSE.txt",
     "static/media/background-dalat.56602a68.png": "/todo-list-react-fe/static/media/background-dalat.56602a68.png",
     "static/media/logo1.ef15cafb.png": "/todo-list-react-fe/static/media/logo1.ef15cafb.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.daea4102.js",
+    "static/js/runtime-main.c5baedd9.js",
     "static/css/2.417ae89d.chunk.css",
-    "static/js/2.1dedd43c.chunk.js",
+    "static/js/2.c81866b9.chunk.js",
     "static/css/main.2ae47eeb.chunk.css",
-    "static/js/main.5199bad1.chunk.js"
+    "static/js/main.3d5b450a.chunk.js"
   ]
 }
