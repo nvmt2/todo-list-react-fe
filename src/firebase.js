@@ -17,4 +17,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export { db };
+// Database name
+const DATABASE_NAME = {
+  TASKS: 'tasks',
+  TODOS: 'todos',
+};
+
+export { db, DATABASE_NAME };
