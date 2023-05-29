@@ -25,3 +25,10 @@ export const actionSignOut = (token) => ({
 export const actionClearUserType = () => ({
   type: typeUser.CLEAR_TYPE_USER,
 });
+export const mockActionSignInSuccess = () => ({
+  type: typeUser.SIGN_IN_SUCCEEDED,
+  data: {
+    token: '1',
+    user: 'mock',
+  },
+});
