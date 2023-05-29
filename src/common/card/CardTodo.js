@@ -14,6 +14,18 @@ import Typography from '@material-ui/core/Typography';
 //internal modules
 import { styleCard } from 'common/card/style';
 
+// Firebase
+import {
+  doc,
+  addDoc,
+  collection,
+  onSnapshot,
+  query,
+  updateDoc,
+  deleteDoc,
+} from 'firebase/firestore';
+import { db, DATABASE_NAME } from 'firebase';
+
 function CardTodo(props) {
   //STATE
   let {
@@ -52,6 +64,16 @@ function CardTodo(props) {
     dispatch(actionOpenDialogEditTask(payload));
   };
 
+  const handleRemoveTodo = async () => {
+    await deleteDoc(doc(db, DATABASE_NAME.TASKS, _id));
+  };
+
+  const handleEditTodo = async (payload) => {
+    await updateDoc(doc(db, DATABASE_NAME.TASKS, _id), {
+      completed: true,
+    });
+  };
+
   //LIFECYCLE
   return (
     <Card className={classes.parentCard} variant="outlined">
@@ -69,14 +91,14 @@ function CardTodo(props) {
       <CardActions>
         {/* <Button size="small">View detail</Button> */}
         {isDisplayRemoveButton && (
-          <Button size="small" onClick={handleRemoveTask}>
+          <Button size="small" onClick={handleRemoveTodo}>
             REMOVE
           </Button>
         )}
 
         {isDisplayDoneDraftButton && (
-          <Button size="small" onClick={handleSaveDraft}>
-            Done Draft
+          <Button size="small" onClick={handleEditTodo}>
+            COMPLETED
           </Button>
         )}
 

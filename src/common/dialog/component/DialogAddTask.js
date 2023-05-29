@@ -13,12 +13,17 @@ import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
+// Firebase
+import { addDoc, collection } from 'firebase/firestore';
+import { db, DATABASE_NAME } from 'firebase';
+
 function DialogAddTask() {
   //STATE
   const classes = styleDialog();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.user);
   let inputDescriptionRef = useRef();
+  let inputTitleRef = useRef();
 
   //METHOD
   const handleClose = () => {
@@ -35,6 +40,19 @@ function DialogAddTask() {
     handleClose();
   };
 
+  const handleAddTodo = async (event) => {
+    const newTodo = {
+      title: inputTitleRef.current.value,
+      description: inputDescriptionRef.current.value,
+      completed: false,
+      createdAt: Date.now(),
+    };
+
+    await addDoc(collection(db, DATABASE_NAME.TASKS), newTodo);
+
+    handleClose();
+  };
+
   return (
     <Box className={classes.root}>
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
@@ -42,13 +60,14 @@ function DialogAddTask() {
       </DialogTitle>
       <DialogContent dividers>
         <form className={classes.formDialog}>
-          {/* <TextField
+          <TextField
             id="outlined-basic"
             label="Title of task"
             type="text"
             variant="outlined"
+            inputRef={inputTitleRef}
             fullWidth
-          /> */}
+          />
           <TextField
             id="outlined-basic"
             label="Description of task"
@@ -63,7 +82,7 @@ function DialogAddTask() {
         <Button onClick={handleCancel} color="secondary" variant="outlined">
           Cancel
         </Button>
-        <Button onClick={handleSave} color="primary" variant="outlined">
+        <Button onClick={handleAddTodo} color="primary" variant="outlined">
           Save
         </Button>
       </DialogActions>

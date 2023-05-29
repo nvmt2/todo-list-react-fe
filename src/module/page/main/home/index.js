@@ -21,6 +21,18 @@ import Tab from '@material-ui/core/Tab';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
 
+// Firebase
+import {
+  doc,
+  addDoc,
+  collection,
+  onSnapshot,
+  query,
+  updateDoc,
+  deleteDoc,
+} from 'firebase/firestore';
+import { db, DATABASE_NAME } from 'firebase';
+
 function Home() {
   // STATE
   const classes = styleHome();
@@ -30,6 +42,7 @@ function Home() {
   const typeToastOfTodoList = useSelector((state) => state.todoList.type);
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
   const [tabIndex, setTabIndex] = useState(0);
+  const [todos, setTodos] = useState([]);
 
   //METHOD
   const handleChangeTab = (event, newValue) => {
@@ -46,11 +59,16 @@ function Home() {
 
   const checkDoneTask = (descriptionTask) => {
     const DONE_CONDITION = ' - done';
-    return descriptionTask.includes(DONE_CONDITION);
+    return descriptionTask && descriptionTask.includes(DONE_CONDITION);
+  };
+
+  const checkCompletedTodo = (isComplete) => {
+    return !!isComplete ? true : false;
   };
 
   const handleOpenSidebar = () => setIsOpenSidebar(true);
   const handleCloseSidebar = () => setIsOpenSidebar(false);
+
   //LIFECYCLE
   useEffect(() => {
     !tasks && getAllTasks();
@@ -59,6 +77,21 @@ function Home() {
   useEffect(() => {
     !!typeToastOfTodoList && dispatch(actionClearTypeTodoList());
   }, [typeToastOfTodoList]);
+
+  useEffect(() => {
+    const q = query(collection(db, DATABASE_NAME.TASKS));
+    const unsub = onSnapshot(q, (querySnapshot) => {
+      let todosQuery = [];
+      querySnapshot.forEach((doc) => {
+        todosQuery.push({
+          ...doc.data(),
+          _id: doc.id,
+        });
+      });
+
+      setTodos(todosQuery);
+    });
+  }, []);
 
   return (
     <BodyContent
@@ -85,10 +118,10 @@ function Home() {
       {/* body */}
       {tabIndex === 0 && (
         <Box className={classes.body}>
-          {!!tasks &&
-            tasks.map(
+          {!!todos &&
+            todos.map(
               (item, index) =>
-                !checkDoneTask(item?.description) && (
+                !checkCompletedTodo(item?.completed) && (
                   <CardTodo
                     isDisplayEditButton
                     isDisplayDoneDraftButton
@@ -102,10 +135,10 @@ function Home() {
 
       {tabIndex === 1 && (
         <Box className={classes.body}>
-          {!!tasks &&
-            tasks.map(
+          {!!todos &&
+            todos.map(
               (item, index) =>
-                checkDoneTask(item?.description) && (
+                checkCompletedTodo(item?.completed) && (
                   <CardTodo isDisplayRemoveButton {...item} key={index} />
                 )
             )}

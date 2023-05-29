@@ -13,13 +13,28 @@ import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
+// Firebase
+import {
+  doc,
+  addDoc,
+  collection,
+  onSnapshot,
+  query,
+  updateDoc,
+  deleteDoc,
+} from 'firebase/firestore';
+import { db, DATABASE_NAME } from 'firebase';
+
 function DialogAddTask() {
   //STATE
   const classes = styleDialog();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.user);
-  const { _id, description } = useSelector((state) => state.dialog.state);
+  const { _id, description, title } = useSelector(
+    (state) => state.dialog.state
+  );
   let inputDescriptionRef = useRef();
+  let inputTitleRef = useRef();
 
   //METHOD
   const handleClose = () => {
@@ -36,6 +51,16 @@ function DialogAddTask() {
     handleClose();
   };
 
+  const handleEditTodo = async (payload) => {
+    const taskUpdated = {
+      title: inputTitleRef.current.value,
+      description: inputDescriptionRef.current.value,
+    };
+
+    await updateDoc(doc(db, DATABASE_NAME.TASKS, _id), taskUpdated);
+    handleClose();
+  };
+
   return (
     <Box className={classes.root}>
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
@@ -43,14 +68,15 @@ function DialogAddTask() {
       </DialogTitle>
       <DialogContent dividers>
         <form className={classes.formDialog}>
-          {/* <TextField
+          <TextField
             id="outlined-basic"
             label="Title of task"
             type="text"
             variant="outlined"
-            defaultValue="My work daily"
+            defaultValue={title}
+            inputRef={inputTitleRef}
             fullWidth
-          /> */}
+          />
           <TextField
             id="outlined-basic"
             label="Description of task"
@@ -66,7 +92,7 @@ function DialogAddTask() {
         <Button onClick={handleCancel} color="secondary" variant="outlined">
           Cancel
         </Button>
-        <Button onClick={handleSave} color="primary" variant="outlined">
+        <Button onClick={handleEditTodo} color="primary" variant="outlined">
           Save
         </Button>
       </DialogActions>
