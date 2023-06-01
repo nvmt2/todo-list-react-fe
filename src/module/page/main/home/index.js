@@ -22,15 +22,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
 
 // Firebase
-import {
-  doc,
-  addDoc,
-  collection,
-  onSnapshot,
-  query,
-  updateDoc,
-  deleteDoc,
-} from 'firebase/firestore';
+import { collection, onSnapshot, query } from 'firebase/firestore';
 import { db, DATABASE_NAME } from 'firebase';
 
 function Home() {
@@ -66,6 +58,8 @@ function Home() {
     return !!isComplete ? true : false;
   };
 
+  const checkRemovedTodo = (isRemoved) => (!!isRemoved ? true : false);
+
   const handleOpenSidebar = () => setIsOpenSidebar(true);
   const handleCloseSidebar = () => setIsOpenSidebar(false);
 
@@ -80,7 +74,7 @@ function Home() {
 
   useEffect(() => {
     const q = query(collection(db, DATABASE_NAME.TASKS));
-    const unsub = onSnapshot(q, (querySnapshot) => {
+    onSnapshot(q, (querySnapshot) => {
       let todosQuery = [];
       querySnapshot.forEach((doc) => {
         todosQuery.push({
@@ -102,7 +96,8 @@ function Home() {
       <Box className={classes.titleShape}>
         <Typography variant="h3">
           {/* Todo list for everyone, done right! */}
-          Todo list for, Toi 💓 Nheo
+          {/* Todo list for, Toi 💓 Nheo */}
+          Việc cần làm cho, Tới 💓 Nheo
         </Typography>
       </Box>
       <Tabs
@@ -112,8 +107,8 @@ function Home() {
         textColor="primary"
         centered
       >
-        <Tab label="TODO" />
-        <Tab label="DONE DRAFT" />
+        <Tab label="CẦN LÀM" />
+        <Tab label="HOÀN THÀNH" />
       </Tabs>
       {/* body */}
       {tabIndex === 0 && (
@@ -121,7 +116,8 @@ function Home() {
           {!!todos &&
             todos.map(
               (item, index) =>
-                !checkCompletedTodo(item?.completed) && (
+                !checkCompletedTodo(item?.completed) &&
+                !checkRemovedTodo(item?.removed) && (
                   <CardTodo
                     isDisplayEditButton
                     isDisplayDoneDraftButton
@@ -138,7 +134,8 @@ function Home() {
           {!!todos &&
             todos.map(
               (item, index) =>
-                checkCompletedTodo(item?.completed) && (
+                checkCompletedTodo(item?.completed) &&
+                !checkRemovedTodo(item?.removed) && (
                   <CardTodo isDisplayRemoveButton {...item} key={index} />
                 )
             )}
