@@ -42,7 +42,6 @@ function DialogAddTask() {
 
   const handleAddTodo = async (event) => {
     const newTodo = {
-      title: inputTitleRef.current.value,
       description: inputDescriptionRef.current.value,
       completed: false,
       createdAt: Date.now(),
@@ -56,21 +55,21 @@ function DialogAddTask() {
   return (
     <Box className={classes.root}>
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-        <Typography className={classes.title}>ADDING</Typography>
+        <Typography className={classes.title}>THÊM MỚI</Typography>
       </DialogTitle>
       <DialogContent dividers>
         <form className={classes.formDialog}>
-          <TextField
+          {/* <TextField
             id="outlined-basic"
             label="Title of task"
             type="text"
             variant="outlined"
             inputRef={inputTitleRef}
             fullWidth
-          />
+          /> */}
           <TextField
             id="outlined-basic"
-            label="Description of task"
+            label="Mô tả"
             type="text"
             variant="outlined"
             inputRef={inputDescriptionRef}
@@ -80,10 +79,10 @@ function DialogAddTask() {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleCancel} color="secondary" variant="outlined">
-          Cancel
+          HỦY
         </Button>
         <Button onClick={handleAddTodo} color="primary" variant="outlined">
-          Save
+          LƯU
         </Button>
       </DialogActions>
     </Box>

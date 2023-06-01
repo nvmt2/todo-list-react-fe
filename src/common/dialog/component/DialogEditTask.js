@@ -14,15 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
 // Firebase
-import {
-  doc,
-  addDoc,
-  collection,
-  onSnapshot,
-  query,
-  updateDoc,
-  deleteDoc,
-} from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import { db, DATABASE_NAME } from 'firebase';
 
 function DialogAddTask() {
@@ -53,7 +45,6 @@ function DialogAddTask() {
 
   const handleEditTodo = async (payload) => {
     const taskUpdated = {
-      title: inputTitleRef.current.value,
       description: inputDescriptionRef.current.value,
     };
 
@@ -64,11 +55,11 @@ function DialogAddTask() {
   return (
     <Box className={classes.root}>
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-        <Typography className={classes.title}>EDIT</Typography>
+        <Typography className={classes.title}>SỬA</Typography>
       </DialogTitle>
       <DialogContent dividers>
         <form className={classes.formDialog}>
-          <TextField
+          {/* <TextField
             id="outlined-basic"
             label="Title of task"
             type="text"
@@ -76,7 +67,7 @@ function DialogAddTask() {
             defaultValue={title}
             inputRef={inputTitleRef}
             fullWidth
-          />
+          /> */}
           <TextField
             id="outlined-basic"
             label="Description of task"
@@ -90,10 +81,10 @@ function DialogAddTask() {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleCancel} color="secondary" variant="outlined">
-          Cancel
+          HỦY
         </Button>
         <Button onClick={handleEditTodo} color="primary" variant="outlined">
-          Save
+          LƯU
         </Button>
       </DialogActions>
     </Box>
