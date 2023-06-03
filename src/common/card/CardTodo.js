@@ -5,6 +5,7 @@ import { moment } from 'momentCustom';
 import { actionOpenDialogEditTask } from 'common/dialog/redux/action';
 import { actionRemoveTask } from 'module/page/main/redux/action';
 import { actionUpdateTask } from 'module/page/main/redux/action';
+import { typeTodoList } from 'module/page/main/redux/constance';
 //material-ui component
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -17,6 +18,9 @@ import { styleCard } from 'common/card/style';
 // Firebase
 import { doc, updateDoc } from 'firebase/firestore';
 import { db, DATABASE_NAME } from 'firebase';
+
+// helper
+import { getKindOfToast } from 'helper/getKindOfToast';
 
 function CardTodo(props) {
   //STATE
@@ -62,6 +66,7 @@ function CardTodo(props) {
     await updateDoc(doc(db, DATABASE_NAME.TASKS, _id), {
       removed: true,
     });
+    getKindOfToast(typeTodoList.REMOVE_TASK_SUCCEEDED);
   };
 
   const handleEditTodo = async (payload) => {

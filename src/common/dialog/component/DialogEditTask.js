@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actionCloseDialog } from 'common/dialog/redux/action';
 import { styleDialog } from 'common/dialog/component/style';
 import { actionUpdateTask } from 'module/page/main/redux/action';
+import { typeTodoList } from 'module/page/main/redux/constance';
 //material-ui component
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -17,6 +18,8 @@ import Typography from '@material-ui/core/Typography';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db, DATABASE_NAME } from 'firebase';
 
+// helper
+import { getKindOfToast } from 'helper/getKindOfToast';
 function DialogAddTask() {
   //STATE
   const classes = styleDialog();
@@ -48,8 +51,9 @@ function DialogAddTask() {
       description: inputDescriptionRef.current.value,
     };
 
-    await updateDoc(doc(db, DATABASE_NAME.TASKS, _id), taskUpdated);
     handleClose();
+    await updateDoc(doc(db, DATABASE_NAME.TASKS, _id), taskUpdated);
+    getKindOfToast(typeTodoList.UPDATE_TASK_SUCCEEDED);
   };
 
   return (
