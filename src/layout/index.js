@@ -17,8 +17,9 @@ import bg6 from '../assets/images/profile-user/bg-image-6.png';
 function LayoutBody(props) {
   const listBackground = [bg1, bg2, bg3, bg4, bg5, bg6];
   const DELAY_TIME_CHANGING_BACKGROUND = 5000;
-  const [backgroundImg, setBackgroundImg] = useState(listBackground[0]);
+  const [backgroundImg, setBackgroundImg] = useState('');
 
+  // change random background image after each 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       const randomIndex = getRandomNumber(0, listBackground.length - 1);
@@ -27,6 +28,13 @@ function LayoutBody(props) {
     }, DELAY_TIME_CHANGING_BACKGROUND);
 
     return () => clearInterval(interval);
+  }, []);
+
+  // Init random background image
+  useEffect(() => {
+    const randomIndex = getRandomNumber(0, listBackground.length - 1);
+
+    setBackgroundImg(listBackground[randomIndex]);
   }, []);
 
   return (
