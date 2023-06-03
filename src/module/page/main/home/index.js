@@ -64,9 +64,9 @@ function Home() {
   const handleCloseSidebar = () => setIsOpenSidebar(false);
 
   //LIFECYCLE
-  useEffect(() => {
-    !tasks && getAllTasks();
-  }, [tasks]);
+  // useEffect(() => {
+  //   !tasks && getAllTasks();
+  // }, [tasks]);
 
   useEffect(() => {
     !!typeToastOfTodoList && dispatch(actionClearTypeTodoList());
